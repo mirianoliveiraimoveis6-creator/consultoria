@@ -405,6 +405,9 @@ h1 em {
     color: var(--petrol);
 }
 
+.mobile-menu {
+    display: none;
+}
 
 /* =========================
    MOBILE
