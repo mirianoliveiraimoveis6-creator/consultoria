@@ -464,4 +464,27 @@ h1 em {
         align-items: flex-start;
         gap: 5px;
     }
+
+        .featured-properties {
+        padding: 80px 6vw;
+    }
+
+    .section-heading {
+        display: block;
+        margin-bottom: 35px;
+    }
+
+    .section-heading h2 {
+        font-size: 42px;
+    }
+
+    .view-all {
+        display: inline-block;
+        margin-top: 25px;
+    }
+
+    .property-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
 }
