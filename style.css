@@ -231,6 +231,180 @@ h1 em {
     font-weight: 500;
 }
 
+/* =========================
+   IMÓVEIS EM DESTAQUE
+========================= */
+
+.featured-properties {
+    padding: 110px 6vw 120px;
+    background: var(--cream);
+}
+
+.section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 48px;
+}
+
+.section-heading h2 {
+    margin-top: 10px;
+
+    font-family: "Playfair Display", serif;
+    font-size: clamp(38px, 4vw, 58px);
+    line-height: 1.05;
+    font-weight: 500;
+
+    color: var(--petrol);
+}
+
+.section-heading h2 em {
+    font-style: italic;
+    color: var(--sage);
+}
+
+.view-all {
+    padding-bottom: 7px;
+
+    border-bottom: 1px solid var(--petrol);
+
+    font-size: 13px;
+    color: var(--petrol);
+}
+
+
+/* GRID */
+
+.property-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+
+/* CARD */
+
+.property-card {
+    background: var(--white);
+
+    overflow: hidden;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.property-card:hover {
+    transform: translateY(-4px);
+
+    box-shadow: 0 15px 35px rgba(23, 59, 67, 0.08);
+}
+
+
+/* FOTO */
+
+.property-image {
+    position: relative;
+
+    aspect-ratio: 4 / 3;
+
+    overflow: hidden;
+}
+
+.property-image img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+    transition: transform 0.5s ease;
+}
+
+.property-card:hover .property-image img {
+    transform: scale(1.04);
+}
+
+
+/* TAG */
+
+.property-tag {
+    position: absolute;
+
+    top: 16px;
+    left: 16px;
+
+    padding: 7px 12px;
+
+    background: var(--petrol);
+    color: var(--white);
+
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+}
+
+.property-tag-rent {
+    background: var(--sage);
+}
+
+
+/* INFORMAÇÕES */
+
+.property-info {
+    padding: 23px 24px 24px;
+}
+
+.property-type {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+
+    color: var(--sage);
+}
+
+.property-info h3 {
+    margin-top: 9px;
+
+    font-family: "Playfair Display", serif;
+    font-size: 24px;
+    line-height: 1.15;
+    font-weight: 500;
+
+    color: var(--petrol);
+}
+
+.property-details {
+    margin-top: 12px;
+
+    font-size: 13px;
+    color: #687174;
+}
+
+.property-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-top: 24px;
+    padding-top: 17px;
+
+    border-top: 1px solid #E5E1DB;
+}
+
+.property-footer strong {
+    font-size: 16px;
+    font-weight: 600;
+
+    color: var(--petrol);
+}
+
+.property-footer a {
+    font-size: 11px;
+    color: var(--petrol);
+}
+
 
 /* =========================
    MOBILE
