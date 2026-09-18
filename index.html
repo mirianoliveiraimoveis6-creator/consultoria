@@ -293,37 +293,38 @@
 
     <script>
 
-        const API_URL =
-            'https://script.google.com/macros/s/AKfycbx9YH2UOvXpXPJjt1hpKkH4z0qHi6USErRnqZeW_oMVA64ghYgEQiwsIOUSyYvKd3a3/exec';
+    const API_URL =
+        'https://script.google.com/macros/s/AKfycbx9YH2UOvXpXPJjt1hpKkH4z0qHi6USErRnqZeW_oMVA64ghYgEQiwsIOUSyYvKd3a3/exec';
 
 
-        async function carregarImoveis() {
+    async function carregarImoveis() {
 
-            try {
+        try {
 
-                const resposta =
-                    await fetch(API_URL);
-
-
-                const imoveis =
-                    await resposta.json();
+            const resposta =
+                await fetch(API_URL);
 
 
-                console.log(
-                    'Imóveis recebidos:',
-                    imoveis
-                );
+            const imoveis =
+                await resposta.json();
 
 
-                const primeiroImovel =
-                    imoveis[0];
+            console.log(
+                'Imóveis recebidos:',
+                imoveis
+            );
 
 
-                const propertyGrid =
-                    document.getElementById('propertyGrid');
+            const propertyGrid =
+                document.getElementById('propertyGrid');
 
 
-                propertyGrid.innerHTML = `
+            propertyGrid.innerHTML = '';
+
+
+            imoveis.forEach(imovel => {
+
+                const card = `
 
                     <article class="property-card">
 
@@ -331,13 +332,12 @@
 
                             <img
                                 src="assets/images/imovel-hero.jpg"
-                                alt="${primeiroImovel.Titulo}"
+                                alt="${imovel.Titulo}"
                             >
-
 
                             <span class="property-tag">
 
-                                ${primeiroImovel.Negocio}
+                                ${imovel.Negocio}
 
                             </span>
 
@@ -349,32 +349,32 @@
 
                             <p class="property-type">
 
-                                ${primeiroImovel.Tipo}
+                                ${imovel.Tipo}
                                 ·
-                                ${primeiroImovel.Bairro}
+                                ${imovel.Bairro}
 
                             </p>
 
 
                             <h3>
 
-                                ${primeiroImovel.Titulo}
+                                ${imovel.Titulo}
 
                             </h3>
 
 
                             <p class="property-details">
 
-                                ${primeiroImovel.Quartos}
+                                ${imovel.Quartos}
                                 dorm. ·
 
-                                ${primeiroImovel.Suites}
+                                ${imovel.Suites}
                                 suíte ·
 
-                                ${primeiroImovel.Vagas}
+                                ${imovel.Vagas}
                                 vagas ·
 
-                                ${primeiroImovel.Area}
+                                ${imovel.Area}
                                 m²
 
                             </p>
@@ -385,7 +385,7 @@
 
                                 <strong>
 
-                                    R$ ${primeiroImovel.Valor}
+                                    R$ ${imovel.Valor}
 
                                 </strong>
 
@@ -406,21 +406,26 @@
                 `;
 
 
-            } catch (erro) {
+                propertyGrid.innerHTML += card;
 
-                console.error(
-                    'Erro ao carregar imóveis:',
-                    erro
-                );
+            });
 
-            }
+
+        } catch (erro) {
+
+            console.error(
+                'Erro ao carregar imóveis:',
+                erro
+            );
 
         }
 
+    }
 
-        carregarImoveis();
 
-    </script>
+    carregarImoveis();
+
+</script>
 
 
 </body>
