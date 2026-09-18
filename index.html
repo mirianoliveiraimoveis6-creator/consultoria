@@ -159,13 +159,59 @@ async function carregarImoveis() {
 
         const imoveis = await resposta.json();
 
-        console.log('Imóveis recebidos:', imoveis);
+console.log('Imóveis recebidos:', imoveis);
 
-    } catch (erro) {
+const primeiroImovel = imoveis[0];
 
-        console.error('Erro ao carregar imóveis:', erro);
+const propertyGrid = document.getElementById('propertyGrid');
 
-    }
+propertyGrid.innerHTML = `
+    <article class="property-card">
+
+        <div class="property-image">
+            <img
+                src="assets/images/imovel-hero.jpg"
+                alt="${primeiroImovel.Titulo}"
+            >
+
+            <span class="property-tag">
+                ${primeiroImovel.Negocio}
+            </span>
+        </div>
+
+        <div class="property-info">
+
+            <p class="property-type">
+                ${primeiroImovel.Tipo} · ${primeiroImovel.Bairro}
+            </p>
+
+            <h3>
+                ${primeiroImovel.Titulo}
+            </h3>
+
+            <p class="property-details">
+                ${primeiroImovel.Quartos} dorm. ·
+                ${primeiroImovel.Suites} suíte ·
+                ${primeiroImovel.Vagas} vagas ·
+                ${primeiroImovel.Area} m²
+            </p>
+
+            <div class="property-footer">
+
+                <strong>
+                    R$ ${primeiroImovel.Valor}
+                </strong>
+
+                <a href="#">
+                    Ver imóvel →
+                </a>
+
+            </div>
+
+        </div>
+
+    </article>
+`;
 
 }
 
