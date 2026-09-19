@@ -147,6 +147,7 @@ async function carregarImoveis() {
             </article>
             `;
             propertyGrid.innerHTML += card;
+            console.log('card novo');
         });
 
         const cards = propertyGrid.querySelectorAll('.property-card');
