@@ -38,6 +38,7 @@ async function carregarImoveis() {
             const fotoCapa = imovel.Fotos?.find(foto => String(foto.Tipo).trim().toLowerCase() === 'capa') || imovel.Fotos?.[0];
             //const imagemImovel = fotoCapa?.Url || 'assets/images/imovel-hero.jpg';
             const imagemImovel = 'https://drive.google.com/thumbnail?id=1zpNTNo6utv0AWpkaMtlVgUnyeuENTUfK&sz=w1200';
+            console.log('Alterado');
             console.log('IMÓVEL:', imovel.Titulo);
             console.log('FOTO:', fotoCapa);
             console.log('IMAGEM:', imagemImovel);
