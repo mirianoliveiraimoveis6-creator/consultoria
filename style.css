@@ -331,22 +331,22 @@ h1 em {
 
 .property-tag {
     position: absolute;
-
     top: 16px;
     left: 16px;
-
     padding: 7px 12px;
-
     background: var(--petrol);
     color: var(--white);
-
     font-size: 9px;
     font-weight: 600;
     letter-spacing: 0.15em;
 }
 
 .property-tag-rent {
-    background: var(--sage);
+    background: #5F7880;
+}
+
+.property-tag-commercial {
+    background: #315B67;
 }
 
 
