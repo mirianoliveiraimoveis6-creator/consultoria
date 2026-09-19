@@ -140,6 +140,7 @@ async function carregarImoveis() {
                         <strong>${formatarMoeda(imovel.Valor)}</strong>
                          <a href="imovel.html?id=${imovel.Id}">
                             Ver imóvel →
+                        </a>
                     </div>
             
                 </div>
