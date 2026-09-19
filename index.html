@@ -1,49 +1,71 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 
-<head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Mirian de Oliveira | Imóveis & Patrimônio & Consórcio</title>
 
-    <title>Mirian de Oliveira | Imóveis & Patrimônio & Consórcio</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="style.css">
+    </head>
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@500;600&display=swap"
-        rel="stylesheet"
-    >
+    <body>
+        <!-- ========================= HEADER ========================== -->
+        <header class="header">
+            <a href="#" class="brand">
+                <span class="brand-name">
+                    MIRIAN
+                </span>
 
-    <link rel="stylesheet" href="style.css">
+                <span class="brand-subtitle">
+                    IMÓVEIS & PATRIMÔNIO & CONSÓRCIO
+                </span>
+            </a>
 
-</head>
+            <nav class="navigation">
+                <a href="#">
+                    Comprar
+                </a>
 
+                <a href="#">
+                    Alugar
+                </a>
 
-<body>
+                <a href="#">
+                    Oportunidades Comerciais
+                </a>
 
+                <a href="#">
+                    Patrimônio & Consórcio
+                </a>
 
-    <!-- =========================
-         HEADER
-    ========================== -->
+                <a href="#">
+                    Sobre mim
+                </a>
 
-    <header class="header">
+                <a
+                    href="https://wa.me/5513997359900"
+                    class="contact-link"
+                    target="_blank"
+                >
+                    Fale comigo
+                </a>
+            </nav>
 
-        <a href="#" class="brand">
+            <button class="menu-button" id="menuButton" aria-label="Abrir menu">
+                ☰
+            </button>
 
-            <span class="brand-name">
-                MIRIAN
-            </span>
+        </header>
 
-            <span class="brand-subtitle">
-                IMÓVEIS & PATRIMÔNIO & CONSÓRCIO
-            </span>
+        <!-- ========================= MENU MOBILE ========================== -->
 
-        </a>
-
-
-        <nav class="navigation">
+        <div class="mobile-menu" id="mobileMenu">
 
             <a href="#">
                 Comprar
@@ -67,209 +89,98 @@
 
             <a
                 href="https://wa.me/5513997359900"
-                class="contact-link"
                 target="_blank"
+                class="mobile-contact"
             >
                 Fale comigo
             </a>
+        </div>
 
-        </nav>
+        <main>
 
+            <!-- ========================= HERO ========================== -->
 
-        <button
-            class="menu-button"
-            id="menuButton"
-            aria-label="Abrir menu"
-        >
-            ☰
-        </button>
-
-    </header>
-
-
-    <!-- =========================
-         MENU MOBILE
-    ========================== -->
-
-    <div
-        class="mobile-menu"
-        id="mobileMenu"
-    >
-
-        <a href="#">
-            Comprar
-        </a>
-
-        <a href="#">
-            Alugar
-        </a>
-
-        <a href="#">
-            Oportunidades Comerciais
-        </a>
-
-        <a href="#">
-            Patrimônio & Consórcio
-        </a>
-
-        <a href="#">
-            Sobre mim
-        </a>
-
-        <a
-            href="https://wa.me/5513997359900"
-            target="_blank"
-            class="mobile-contact"
-        >
-            Fale comigo
-        </a>
-
-    </div>
-
-
-    <main>
-
-
-        <!-- =========================
-             HERO
-        ========================== -->
-
-        <section class="hero">
-
-
-            <div class="hero-content">
-
-
-                <p class="eyebrow">
-                    PRAIA GRANDE · SP
-                </p>
-
-
-                <h1>
-
-                    Seu próximo<br>
-
-                    <em>endereço</em><br>
-
-                    começa aqui.
-
-                </h1>
-
-
-                <p class="hero-description">
-
-                    Compra e locação de imóveis com um atendimento
-                    próximo, transparente e pensado para o que você procura.
-
-                </p>
-
-
-                <div class="hero-actions">
-
-
-                    <a
-                        href="#imoveis"
-                        class="button button-primary"
-                    >
-                        Encontrar imóvel
-                    </a>
-
-
-                    <a
-                        href="https://wa.me/5513997359900"
-                        class="button button-secondary"
-                        target="_blank"
-                    >
-                        Quero anunciar
-                    </a>
-
-
-                </div>
-
-
-            </div>
-
-
-            <div class="hero-image">
-
-
-                <img
-                    src="assets/images/imovel-hero.jpg"
-                    alt="Imóvel em destaque"
-                >
-
-
-            </div>
-
-
-        </section>
-
-
-        <!-- =========================
-             IMÓVEIS EM DESTAQUE
-        ========================== -->
-
-        <section
-            class="featured-properties"
-            id="imoveis"
-        >
-
-
-            <div class="section-heading">
-
-
-                <div>
-
-
+            <section class="hero">
+                <div class="hero-content">
                     <p class="eyebrow">
-                        IMÓVEIS EM DESTAQUE
+                        PRAIA GRANDE · SP
                     </p>
 
+                    <h1>
+                        Seu próximo<br>
+                        <em>endereço</em><br>
+                        começa aqui.
+                    </h1>
 
-                    <h2>
+                    <p class="hero-description">
+                        Compra e locação de imóveis com um atendimento
+                        próximo, transparente e pensado para o que você procura.
+                    </p>
 
-                        Encontre um lugar<br>
+                    <div class="hero-actions">
 
-                        <em>
-                            para chamar de seu.
-                        </em>
+                        <a
+                            href="#imoveis"
+                            class="button button-primary"
+                        >
+                            Encontrar imóvel
+                        </a>
 
-                    </h2>
+                        <a
+                            href="https://wa.me/5513997359900"
+                            class="button button-secondary"
+                            target="_blank"
+                        >
+                            Quero anunciar
+                        </a>
 
-
+                    </div>
                 </div>
 
+                <div class="hero-image">
+                    <img
+                        src="assets/images/imovel-hero.jpg"
+                        alt="Imóvel em destaque"
+                    >
+                </div>
+            </section>
 
 
+            <!-- ========================= IMÓVEIS EM DESTAQUE ========================== -->
 
-            </div>
-
-
-            <!--
-                Os imóveis serão criados automaticamente
-                a partir dos dados da planilha.
-            -->
-
-            <div
-                class="property-grid"
-                id="propertyGrid"
+            <section
+                class="featured-properties"
+                id="imoveis"
             >
 
-            </div>
+                <div class="section-heading">
 
+                    <div>
+                        <p class="eyebrow">
+                            IMÓVEIS EM DESTAQUE
+                        </p>
 
-        </section>
+                        <h2>
+                            Encontre um lugar<br>
+                            <em>
+                                para chamar de seu.
+                            </em>
+                        </h2>
+                    </div>
+                </div>
 
+                <!-- Os imóveis serão criados automaticamente a partir dos dados da planilha. -->
 
-    </main>
+                <div
+                    class="property-grid"
+                    id="propertyGrid"
+                >
+                </div>
+            </section>
+        </main>
 
+        <!-- ========================= MENU MOBILE ========================== -->
 
-    <!-- =========================
-         MENU MOBILE
-    ========================== -->
-
-    <script src="script.js"></script>
-
-</body>
-
+        <script src="script.js"></script>
+    </body>
 </html>
