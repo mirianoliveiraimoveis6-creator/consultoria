@@ -20,7 +20,9 @@
 
 </head>
 
+
 <body>
+
 
     <!-- =========================
          HEADER
@@ -127,13 +129,16 @@
 
     <main>
 
+
         <!-- =========================
              HERO
         ========================== -->
 
         <section class="hero">
 
+
             <div class="hero-content">
+
 
                 <p class="eyebrow">
                     PRAIA GRANDE · SP
@@ -161,6 +166,7 @@
 
                 <div class="hero-actions">
 
+
                     <a
                         href="#imoveis"
                         class="button button-primary"
@@ -177,12 +183,15 @@
                         Quero anunciar
                     </a>
 
+
                 </div>
+
 
             </div>
 
 
             <div class="hero-image">
+
 
                 <img
                     src="assets/images/imovel-hero.jpg"
@@ -202,7 +211,9 @@
 
                 </div>
 
+
             </div>
+
 
         </section>
 
@@ -216,9 +227,12 @@
             id="imoveis"
         >
 
+
             <div class="section-heading">
 
+
                 <div>
+
 
                     <p class="eyebrow">
                         IMÓVEIS EM DESTAQUE
@@ -235,6 +249,7 @@
 
                     </h2>
 
+
                 </div>
 
 
@@ -245,12 +260,13 @@
                     Ver todos os imóveis →
                 </a>
 
+
             </div>
 
 
             <!--
-                Os cards serão criados automaticamente
-                pelo JavaScript usando os dados da planilha.
+                Os imóveis serão criados automaticamente
+                a partir dos dados da planilha.
             -->
 
             <div
@@ -260,19 +276,23 @@
 
             </div>
 
+
         </section>
+
 
     </main>
 
 
     <!-- =========================
-         MENU MOBILE - JAVASCRIPT
+         MENU MOBILE
     ========================== -->
 
     <script>
 
+
         const menuButton =
             document.getElementById('menuButton');
+
 
         const mobileMenu =
             document.getElementById('mobileMenu');
@@ -284,148 +304,250 @@
 
         });
 
+
     </script>
 
 
     <!-- =========================
-         IMÓVEIS - API / GOOGLE SHEETS
+         IMÓVEIS / GOOGLE SHEETS
     ========================== -->
 
     <script>
 
-    const API_URL =
-        'https://script.google.com/macros/s/AKfycbx9YH2UOvXpXPJjt1hpKkH4z0qHi6USErRnqZeW_oMVA64ghYgEQiwsIOUSyYvKd3a3/exec';
+
+        const API_URL =
+            'https://script.google.com/macros/s/AKfycbx9YH2UOvXpXPJjt1hpKkH4z0qHi6USErRnqZeW_oMVA64ghYgEQiwsIOUSyYvKd3a3/exec';
 
 
-    async function carregarImoveis() {
 
-        try {
-
-            const resposta =
-                await fetch(API_URL);
+        async function carregarImoveis() {
 
 
-            const imoveis =
-                await resposta.json();
+            try {
 
 
-            console.log(
-                'Imóveis recebidos:',
-                imoveis
-            );
+                const resposta =
+                    await fetch(API_URL);
 
 
-            const propertyGrid =
-                document.getElementById('propertyGrid');
+                const imoveis =
+                    await resposta.json();
 
 
-            propertyGrid.innerHTML = '';
+                console.log(
+                    'Imóveis recebidos:',
+                    imoveis
+                );
 
 
-            imoveis.forEach(imovel => {
-
-                const card = `
-
-                    <article class="property-card">
-
-                        <div class="property-image">
-
-                            <img
-                                src="assets/images/imovel-hero.jpg"
-                                alt="${imovel.Titulo}"
-                            >
-
-                            <span class="property-tag">
-
-                                ${imovel.Negocio}
-
-                            </span>
-
-                        </div>
+                /*
+                 * Filtra somente os imóveis marcados
+                 * como destaque.
+                 *
+                 * Depois organiza pela OrdemDestaque.
+                 *
+                 * Não existe limite de quantidade.
+                 */
 
 
-                        <div class="property-info">
+                const destaques = imoveis
+
+                    .filter(imovel =>
+                        String(imovel.Destaque).trim().toLowerCase() === 'sim'
+                    )
+
+                    .sort((a, b) => {
+
+                        const ordemA =
+                            Number(a.OrdemDestaque) || 999999;
+
+                        const ordemB =
+                            Number(b.OrdemDestaque) || 999999;
+
+                        return ordemA - ordemB;
+
+                    });
 
 
-                            <p class="property-type">
 
-                                ${imovel.Tipo}
-                                ·
-                                ${imovel.Bairro}
-
-                            </p>
+                console.log(
+                    'Imóveis em destaque:',
+                    destaques
+                );
 
 
-                            <h3>
 
-                                ${imovel.Titulo}
-
-                            </h3>
+                const propertyGrid =
+                    document.getElementById('propertyGrid');
 
 
-                            <p class="property-details">
-
-                                ${imovel.Quartos}
-                                dorm. ·
-
-                                ${imovel.Suites}
-                                suíte ·
-
-                                ${imovel.Vagas}
-                                vagas ·
-
-                                ${imovel.Area}
-                                m²
-
-                            </p>
+                propertyGrid.innerHTML = '';
 
 
-                            <div class="property-footer">
+
+                /*
+                 * Cria um card para cada imóvel
+                 * marcado como destaque.
+                 */
 
 
-                                <strong>
-
-                                    R$ ${imovel.Valor}
-
-                                </strong>
+                destaques.forEach(imovel => {
 
 
-                                <a href="#">
+                    /*
+                     * Define a classe da etiqueta
+                     * de acordo com o tipo de negócio.
+                     */
 
-                                    Ver imóvel →
 
-                                </a>
+                    let classeEtiqueta =
+                        'property-tag';
+
+
+
+                    if (
+                        String(imovel.Negocio).trim().toLowerCase()
+                        === 'locação'
+                    ) {
+
+                        classeEtiqueta +=
+                            ' property-tag-rent';
+
+                    }
+
+
+
+                    if (
+                        String(imovel.Negocio).trim().toLowerCase()
+                        === 'oportunidade comercial'
+                    ) {
+
+                        classeEtiqueta +=
+                            ' property-tag-commercial';
+
+                    }
+
+
+
+                    /*
+                     * Cria o card.
+                     */
+
+
+                    const card = `
+
+                        <article class="property-card">
+
+
+                            <div class="property-image">
+
+
+                                <img
+                                    src="assets/images/imovel-hero.jpg"
+                                    alt="${imovel.Titulo}"
+                                >
+
+
+                                <span class="${classeEtiqueta}">
+
+                                    ${imovel.Negocio}
+
+                                </span>
+
 
                             </div>
 
 
-                        </div>
-
-                    </article>
-
-                `;
+                            <div class="property-info">
 
 
-                propertyGrid.innerHTML += card;
+                                <p class="property-type">
 
-            });
+                                    ${imovel.Tipo}
+                                    ·
+                                    ${imovel.Bairro}
+
+                                </p>
 
 
-        } catch (erro) {
+                                <h3>
 
-            console.error(
-                'Erro ao carregar imóveis:',
-                erro
-            );
+                                    ${imovel.Titulo}
+
+                                </h3>
+
+
+                                <p class="property-details">
+
+                                    ${imovel.Quartos}
+                                    dorm. ·
+
+                                    ${imovel.Suites}
+                                    suíte ·
+
+                                    ${imovel.Vagas}
+                                    vagas ·
+
+                                    ${imovel.Area}
+                                    m²
+
+                                </p>
+
+
+                                <div class="property-footer">
+
+
+                                    <strong>
+
+                                        R$ ${imovel.Valor}
+
+                                    </strong>
+
+
+                                    <a href="#">
+
+                                        Ver imóvel →
+
+                                    </a>
+
+
+                                </div>
+
+
+                            </div>
+
+
+                        </article>
+
+                    `;
+
+
+                    propertyGrid.innerHTML += card;
+
+
+                });
+
+
+            } catch (erro) {
+
+
+                console.error(
+                    'Erro ao carregar imóveis:',
+                    erro
+                );
+
+
+            }
+
 
         }
 
-    }
 
 
-    carregarImoveis();
+        carregarImoveis();
 
-</script>
+
+    </script>
 
 
 </body>
