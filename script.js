@@ -138,7 +138,8 @@ async function carregarImoveis() {
             
                     <div class="property-footer">
                         <strong>${formatarMoeda(imovel.Valor)}</strong>
-                        <a href="#">Ver imóvel →</a>
+                         <a href="imovel.html?id=${imovel.Id}">
+                            Ver imóvel →
                     </div>
             
                 </div>
