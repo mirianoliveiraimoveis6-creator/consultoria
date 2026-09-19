@@ -35,8 +35,8 @@ async function carregarImoveis() {
         // Cria um card para cada imóvel marcado como destaque
 
         destaques.forEach(imovel => {
-            const fotoCapa = imovel.Fotos?.find(foto => String(foto.Tipo).trim().toLowerCase() === 'capa') || imovel.Fotos?.[0];
-            const imagemImovel = fotoCapa?.Url || 'assets/images/imovel-hero.jpg';
+            //REMOVER const fotoCapa = imovel.Fotos?.find(foto => String(foto.Tipo).trim().toLowerCase() === 'capa') || imovel.Fotos?.[0];
+            //REMOVER const imagemImovel = fotoCapa?.Url || 'assets/images/imovel-hero.jpg';
             //const imagemImovel = 'https://drive.google.com/thumbnail?id=1zpNTNo6utv0AWpkaMtlVgUnyeuENTUfK&sz=w1200';
             const fotos = imovel.Fotos || [];
             const galeria = fotos.length > 0
@@ -47,7 +47,7 @@ async function carregarImoveis() {
                 }];
             const temGaleria = galeria.length > 1;
             console.log('temGaleria', temGaleria); 
-            console.log('Alterado 2');
+            console.log('Alterado 3');
             
             //Define a etiqueta de acordo com o tipo de negócio
 
