@@ -147,6 +147,83 @@ async function carregarImoveis() {
             propertyGrid.innerHTML += card;
         });
 
+        const cards = propertyGrid.querySelectorAll('.property-card');
+
+cards.forEach((card, indiceCard) => {
+
+    const imovel = destaques[indiceCard];
+    const fotos = imovel.Fotos || [];
+
+    if (fotos.length <= 1) {
+        return;
+    }
+
+    let fotoAtual = 0;
+
+    const imagem = card.querySelector('[data-gallery-image]');
+    const anterior = card.querySelector('[data-gallery-prev]');
+    const proxima = card.querySelector('[data-gallery-next]');
+    const dots = card.querySelectorAll('[data-gallery-dot]');
+
+    function atualizarGaleria() {
+
+        const foto = fotos[fotoAtual];
+
+        imagem.src = foto.Url;
+        imagem.alt = foto.Legenda || imovel.Titulo;
+
+        dots.forEach((dot, indice) => {
+            dot.classList.toggle(
+                'active',
+                indice === fotoAtual
+            );
+        });
+    }
+
+    proxima.addEventListener('click', (event) => {
+
+        event.preventDefault();
+        event.stopPropagation();
+
+        fotoAtual++;
+
+        if (fotoAtual >= fotos.length) {
+            fotoAtual = 0;
+        }
+
+        atualizarGaleria();
+    });
+
+    anterior.addEventListener('click', (event) => {
+
+        event.preventDefault();
+        event.stopPropagation();
+
+        fotoAtual--;
+
+        if (fotoAtual < 0) {
+            fotoAtual = fotos.length - 1;
+        }
+
+        atualizarGaleria();
+    });
+
+    dots.forEach((dot, indice) => {
+
+        dot.addEventListener('click', (event) => {
+
+            event.preventDefault();
+            event.stopPropagation();
+
+            fotoAtual = indice;
+
+            atualizarGaleria();
+        });
+
+    });
+
+});
+
     } catch (erro) {
         console.error('Erro ao carregar imóveis:', erro);
     }
