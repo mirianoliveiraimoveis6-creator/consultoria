@@ -22,7 +22,7 @@ async function carregarImoveis() {
             * Não existe limite de quantidade.
         */
 
-        const destaques = imoveis.filter(imovel =>String(imovel.Destaque).trim().toLowerCase() === 'sim').sort((a, b) => {
+        const destaques = imoveis.filter(imovel => String(imovel.Status).trim().toLowerCase() === 'ativo' && String(imovel.Destaque).trim().toLowerCase() === 'sim').sort((a, b) => {
                 const ordemA = Number(a.OrdemDestaque) || 999999;
                 const ordemB = Number(b.OrdemDestaque) || 999999;
                 return ordemA - ordemB;
