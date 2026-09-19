@@ -46,6 +46,7 @@ async function carregarImoveis() {
                     Legenda: imovel.Titulo
                 }];
             const temGaleria = galeria.length > 1;
+            console.log('temGaleria', temGaleria); 
             console.log('Alterado 2');
             
             //Define a etiqueta de acordo com o tipo de negócio
