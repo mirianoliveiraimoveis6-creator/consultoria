@@ -35,6 +35,8 @@ async function carregarImoveis() {
         // Cria um card para cada imóvel marcado como destaque
 
         destaques.forEach(imovel => {
+            const fotoCapa = imovel.Fotos?.find(foto => String(foto.Tipo).trim().toLowerCase() === 'capa') || imovel.Fotos?.[0];
+            const imagemImovel = fotoCapa?.Url || 'assets/images/imovel-hero.jpg';
             //Define a etiqueta de acordo com o tipo de negócio
 
             let classeEtiqueta = 'property-tag';
@@ -61,7 +63,7 @@ async function carregarImoveis() {
             const card = ` 
             <article class="property-card">
                 <div class="property-image">
-                    <img src="assets/images/imovel-hero.jpg" alt="${imovel.Titulo}">
+                    <img src="${imagemImovel}" alt="${imovel.Titulo}">
                         <span class="${classeEtiqueta}">
                             ${imovel.Negocio}
                         </span>
@@ -98,7 +100,6 @@ async function carregarImoveis() {
         console.error('Erro ao carregar imóveis:', erro);
     }
 }
-
 
 
 carregarImoveis();
