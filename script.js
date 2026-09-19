@@ -36,8 +36,8 @@ async function carregarImoveis() {
 
         destaques.forEach(imovel => {
             const fotoCapa = imovel.Fotos?.find(foto => String(foto.Tipo).trim().toLowerCase() === 'capa') || imovel.Fotos?.[0];
-            const imagemImovel = fotoCapa?.Url || 'assets/images/imovel-hero.jpg';
-            
+            //const imagemImovel = fotoCapa?.Url || 'assets/images/imovel-hero.jpg';
+            const imagemImovel = 'https://drive.google.com/uc?export=view&id=1zpNTNo6utv0AWpkaMtlVgUnyeuENTUfK';
             console.log('IMÓVEL:', imovel.Titulo);
             console.log('FOTO:', fotoCapa);
             console.log('IMAGEM:', imagemImovel);
