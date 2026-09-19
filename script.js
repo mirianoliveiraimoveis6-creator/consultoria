@@ -38,6 +38,14 @@ async function carregarImoveis() {
             const fotoCapa = imovel.Fotos?.find(foto => String(foto.Tipo).trim().toLowerCase() === 'capa') || imovel.Fotos?.[0];
             const imagemImovel = fotoCapa?.Url || 'assets/images/imovel-hero.jpg';
             //const imagemImovel = 'https://drive.google.com/thumbnail?id=1zpNTNo6utv0AWpkaMtlVgUnyeuENTUfK&sz=w1200';
+            const fotos = imovel.Fotos || [];
+            const galeria = fotos.length > 0
+                ? fotos
+                : [{
+                    Url: 'assets/images/imovel-hero.jpg',
+                    Legenda: imovel.Titulo
+                }];
+            const temGaleria = galeria.length > 1;
             console.log('Alterado');
             
             //Define a etiqueta de acordo com o tipo de negócio
@@ -63,37 +71,77 @@ async function carregarImoveis() {
                 `;
             }
 
-            const card = ` 
+            const card = `
             <article class="property-card">
+            
                 <div class="property-image">
-                    <img src="${imagemImovel}" alt="${imovel.Titulo}">
-                        <span class="${classeEtiqueta}">
-                            ${imovel.Negocio}
-                        </span>
+            
+                    <img
+                        src="${galeria[0].Url}"
+                        alt="${galeria[0].Legenda || imovel.Titulo}"
+                        data-gallery-image
+                    >
+            
+                    <span class="${classeEtiqueta}">
+                        ${imovel.Negocio}
+                    </span>
+            
+                    ${
+                        temGaleria
+                        ? `
+                            <button
+                                class="property-gallery-button property-gallery-prev"
+                                type="button"
+                                data-gallery-prev
+                                aria-label="Foto anterior"
+                            >
+                                ‹
+                            </button>
+            
+                            <button
+                                class="property-gallery-button property-gallery-next"
+                                type="button"
+                                data-gallery-next
+                                aria-label="Próxima foto"
+                            >
+                                ›
+                            </button>
+            
+                            <div class="property-gallery-dots">
+                                ${galeria.map((foto, indice) => `
+                                    <span
+                                        class="property-gallery-dot ${indice === 0 ? 'active' : ''}"
+                                        data-gallery-dot="${indice}"
+                                    ></span>
+                                `).join('')}
+                            </div>
+                        `
+                        : ''
+                    }
+            
                 </div>
+            
                 <div class="property-info">
+            
                     <p class="property-type">
                         ${imovel.Tipo}
                         ·
                         ${imovel.Bairro}
                     </p>
-                    <h3>
-                        ${imovel.Titulo}
-                    </h3>
+            
+                    <h3>${imovel.Titulo}</h3>
+            
                     <p class="property-details">
-                        <p class="property-details">
                         ${detalhesImovel}
                     </p>
-                    </p>
+            
                     <div class="property-footer">
-                        <strong>
-                            ${formatarMoeda(imovel.Valor)}
-                        </strong>
-                        <a href="#">
-                            Ver imóvel →
-                        </a>
+                        <strong>${formatarMoeda(imovel.Valor)}</strong>
+                        <a href="#">Ver imóvel →</a>
                     </div>
+            
                 </div>
+            
             </article>
             `;
             propertyGrid.innerHTML += card;
