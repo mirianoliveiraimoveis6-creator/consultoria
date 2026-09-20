@@ -1,42 +1,66 @@
 document.addEventListener('DOMContentLoaded', async () => {
 
-    const headerContainer = document.getElementById('site-header');
+    const headerContainer =
+        document.getElementById('site-header');
 
     if (!headerContainer) {
         return;
     }
 
     try {
-        // Carrega o HTML do header
-        const resposta = await fetch('header.html');
+
+        // =====================================================
+        // CARREGA O HEADER
+        // =====================================================
+
+        const resposta =
+            await fetch('header.html');
 
         if (!resposta.ok) {
-            throw new Error(`Erro ao carregar o header: ${resposta.status}`);
+            throw new Error(
+                `Erro ao carregar o header: ${resposta.status}`
+            );
         }
 
-        const html = await resposta.text();
+        const html =
+            await resposta.text();
 
         headerContainer.innerHTML = html;
 
-        // Identifica a página atual
-        const paginaAtual =
-            window.location.pathname.split('/').pop() || 'index.html';
 
-        // Marca o item ativo no menu
-        const linksMenu = headerContainer.querySelectorAll(
-            '.navigation a, .mobile-menu a'
-        );
+        // =====================================================
+        // IDENTIFICA A PÁGINA ATUAL
+        // =====================================================
+
+        const paginaAtual =
+            window.location.pathname
+                .split('/')
+                .pop() || 'index.html';
+
+
+        // =====================================================
+        // MENU ATIVO
+        // =====================================================
+
+        const linksMenu =
+            headerContainer.querySelectorAll(
+                '.navigation a'
+            );
 
         linksMenu.forEach(link => {
 
-            const href = link.getAttribute('href');
+            const href =
+                link.getAttribute('href');
 
             if (!href || href.startsWith('http')) {
                 return;
             }
 
             const paginaDestino =
-                href.split('/').pop().split('?')[0];
+                href
+                    .split('/')
+                    .pop()
+                    .split('?')[0];
 
             if (paginaDestino === paginaAtual) {
                 link.classList.add('active');
@@ -44,34 +68,41 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         });
 
-        // Menu mobile
+
+        // =====================================================
+        // MENU MOBILE
+        // =====================================================
+
         const menuButton =
-            headerContainer.querySelector('#menuButton');
+            headerContainer.querySelector(
+                '#menuButton'
+            );
 
         const mobileMenu =
-            headerContainer.querySelector('#mobileMenu');
+            headerContainer.querySelector(
+                '#mobileMenu'
+            );
 
-        if (menuButton && mobileMenu) {
 
-            menuButton.addEventListener('click', () => {
+        if (!menuButton || !mobileMenu) {
 
-                const aberto =
-                    mobileMenu.classList.toggle('open');
+            console.warn(
+                'Menu mobile não encontrado no header.'
+            );
 
-                menuButton.setAttribute(
-                    'aria-expanded',
-                    aberto
-                );
+            return;
+        }
 
-            });
 
-            // Fecha o menu ao clicar em um link
-            const linksMobile =
-                mobileMenu.querySelectorAll('a');
+        // Abre / fecha o menu
+        menuButton.addEventListener(
+            'click',
+            () => {
 
-            linksMobile.forEach(link => {
+                const menuAberto =
+                    mobileMenu.classList.contains('open');
 
-                link.addEventListener('click', () => {
+                if (menuAberto) {
 
                     mobileMenu.classList.remove('open');
 
@@ -80,15 +111,52 @@ document.addEventListener('DOMContentLoaded', async () => {
                         'false'
                     );
 
-                });
+                } else {
 
-            });
+                    mobileMenu.classList.add('open');
 
-        }
+                    menuButton.setAttribute(
+                        'aria-expanded',
+                        'true'
+                    );
+
+                }
+
+            }
+        );
+
+
+        // Fecha o menu ao clicar em qualquer link
+        const linksMobile =
+            mobileMenu.querySelectorAll('a');
+
+        linksMobile.forEach(link => {
+
+            link.addEventListener(
+                'click',
+                () => {
+
+                    mobileMenu.classList.remove(
+                        'open'
+                    );
+
+                    menuButton.setAttribute(
+                        'aria-expanded',
+                        'false'
+                    );
+
+                }
+            );
+
+        });
+
 
     } catch (erro) {
 
-        console.error('Erro ao carregar o header:', erro);
+        console.error(
+            'Erro ao carregar o header:',
+            erro
+        );
 
         headerContainer.innerHTML = `
             <p style="
