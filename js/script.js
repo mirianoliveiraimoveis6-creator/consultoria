@@ -1,4 +1,5 @@
 const API_URL ='https://script.google.com/macros/s/AKfycbx9YH2UOvXpXPJjt1hpKkH4z0qHi6USErRnqZeW_oMVA64ghYgEQiwsIOUSyYvKd3a3/exec';
+let todosOsImoveis = [];
 
 function formatarMoeda(valor) {
     return Number(valor).toLocaleString('pt-BR', {
@@ -13,6 +14,7 @@ async function carregarImoveis() {
     try {
         const resposta = await fetch(API_URL);
         const imoveis = await resposta.json();
+        todosOsImoveis = imoveis;
         console.log('Imóveis recebidos da planilha:' , imoveis);
 
         /*
@@ -278,3 +280,20 @@ async function carregarImoveis() {
         });
 
         atualizarCamposBusca();
+
+/* =========================================================
+   FILTROS DA BUSCA
+   ========================================================= */
+
+        const filtroTipo = document.getElementById('filtroTipo');
+        const filtroBairro = document.getElementById('filtroBairro');
+        const filtroQuartos = document.getElementById('filtroQuartos');
+        const filtroArea = document.getElementById('filtroArea');
+        const filtroVagas = document.getElementById('filtroVagas');
+        
+        const buscarImoveis = document.getElementById('buscarImoveis');
+        const limparBusca = document.getElementById('limparBusca');
+        
+        const searchResults = document.getElementById('searchResults');
+        const searchResultsTitle = document.getElementById('searchResultsTitle');
+        const searchPropertyGrid = document.getElementById('searchPropertyGrid');
