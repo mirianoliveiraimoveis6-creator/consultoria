@@ -1,230 +1,296 @@
-const API_URL = 'https://script.google.com/macros/s/AKfycbx9YH2UOvXpXPJjt1hpKkH4z0qHi6USErRnqZeW_oMVA64ghYgEQiwsIOUSyYvKd3a3/exec?tipo=consorcios';
+const API_URL =
+    'https://script.google.com/macros/s/AKfycbx9YH2UOvXpXPJjt1hpKkH4z0qHi6USErRnqZeW_oMVA64ghYgEQiwsIOUSyYvKd3a3/exec?tipo=consorcios';
 
 let todosOsConsorcios = [];
 
+const filtroTipo =
+    document.getElementById('filtroTipo');
 
-// =========================================================
-// ELEMENTOS
-// =========================================================
+const filtroCategoria =
+    document.getElementById('filtroCategoria');
 
-const filtroTipo = document.getElementById('filtroTipo');
-const filtroCategoria = document.getElementById('filtroCategoria');
-const buscarConsorcios = document.getElementById('buscarConsorcios');
-const limparBusca = document.getElementById('limparBusca');
-const consorcioGrid = document.getElementById('consorcioGrid');
-const semResultados = document.getElementById('semResultados');
-const tituloResultados = document.getElementById('tituloResultados');
+const buscarConsorcios =
+    document.getElementById('buscarConsorcios');
 
-const menuButton = document.getElementById('menuButton');
-const mobileMenu = document.getElementById('mobileMenu');
+const limparBusca =
+    document.getElementById('limparBusca');
 
+const consorcioGrid =
+    document.getElementById('consorcioGrid');
 
-// =========================================================
-// MENU MOBILE
-// =========================================================
+const semResultados =
+    document.getElementById('semResultados');
 
-if (menuButton && mobileMenu) {
-
-    menuButton.addEventListener('click', () => {
-        mobileMenu.classList.toggle('open');
-    });
-
-}
+const tituloResultados =
+    document.getElementById('tituloResultados');
 
 
-// =========================================================
-// FORMATAÇÃO
-// =========================================================
+/* =========================================================
+   FORMATAÇÃO
+========================================================= */
 
 function formatarMoeda(valor) {
 
-    if (valor === '' || valor === null || valor === undefined) {
+    if (
+        valor === '' ||
+        valor === null ||
+        valor === undefined
+    ) {
         return '';
     }
 
-    return Number(valor).toLocaleString('pt-BR', {
+    const numero = Number(valor);
+
+    if (Number.isNaN(numero)) {
+        return '';
+    }
+
+    return numero.toLocaleString('pt-BR', {
         style: 'currency',
         currency: 'BRL',
         minimumFractionDigits: 0,
         maximumFractionDigits: 0
     });
-
 }
 
 
 function formatarPrazo(valor) {
 
-    if (!valor) {
+    if (
+        valor === '' ||
+        valor === null ||
+        valor === undefined
+    ) {
         return '';
     }
 
     return `${valor} meses`;
-
 }
 
 
-// =========================================================
-// PREENCHER FILTROS
-// =========================================================
+/* =========================================================
+   FILTROS
+========================================================= */
 
-function preencherOpcoes(select, valores, textoPadrao) {
+function preencherOpcoes(
+    select,
+    valores,
+    textoPadrao
+) {
 
-    const valoresUnicos = [...new Set(
-        valores
-            .map(valor => String(valor || '').trim())
-            .filter(Boolean)
-    )].sort((a, b) =>
+    const valoresUnicos = [
+        ...new Set(
+            valores
+                .map(valor =>
+                    String(valor || '').trim()
+                )
+                .filter(Boolean)
+        )
+    ].sort((a, b) =>
         a.localeCompare(b, 'pt-BR')
     );
 
-    select.innerHTML = `<option value="">${textoPadrao}</option>`;
+    select.innerHTML =
+        `<option value="">${textoPadrao}</option>`;
 
     valoresUnicos.forEach(valor => {
 
-        const option = document.createElement('option');
+        const option =
+            document.createElement('option');
 
         option.value = valor;
         option.textContent = valor;
 
         select.appendChild(option);
-
     });
-
 }
 
 
 function atualizarOpcoesBusca() {
 
-    const consorciosAtivos = todosOsConsorcios.filter(consorcio => {
+    const consorciosAtivos =
+        todosOsConsorcios.filter(consorcio => {
 
-        const status = String(consorcio.Status || '')
-            .trim()
-            .toLowerCase();
+            const status =
+                String(consorcio.Status || '')
+                    .trim()
+                    .toLowerCase();
 
-        return status === 'ativo';
-
-    });
+            return status === 'ativo';
+        });
 
     preencherOpcoes(
         filtroTipo,
-        consorciosAtivos.map(consorcio => consorcio.Tipo),
+        consorciosAtivos.map(
+            consorcio => consorcio.Tipo
+        ),
         'Todos'
     );
 
     preencherOpcoes(
         filtroCategoria,
-        consorciosAtivos.map(consorcio => consorcio.Categoria),
+        consorciosAtivos.map(
+            consorcio => consorcio.Categoria
+        ),
         'Todas'
     );
-
 }
 
 
-// =========================================================
-// CARREGAR CONSÓRCIOS
-// =========================================================
+/* =========================================================
+   CARREGAMENTO
+========================================================= */
 
 async function carregarConsorcios() {
 
     try {
 
-        const resposta = await fetch(API_URL);
+        const resposta =
+            await fetch(API_URL);
 
         if (!resposta.ok) {
-            throw new Error(`Erro HTTP: ${resposta.status}`);
+            throw new Error(
+                `Erro HTTP: ${resposta.status}`
+            );
         }
 
-        todosOsConsorcios = await resposta.json();
+        todosOsConsorcios =
+            await resposta.json();
 
         atualizarOpcoesBusca();
 
-        renderizarConsorcios(todosOsConsorcios);
+        const ativos =
+            todosOsConsorcios.filter(
+                consorcio =>
+                    String(consorcio.Status || '')
+                        .trim()
+                        .toLowerCase() === 'ativo'
+            );
+
+        renderizarConsorcios(ativos);
 
     } catch (erro) {
 
-        console.error('Erro ao carregar consórcios:', erro);
+        console.error(
+            'Erro ao carregar consórcios:',
+            erro
+        );
 
         consorcioGrid.innerHTML = `
             <div class="no-results">
-                <h3>Não foi possível carregar as opções.</h3>
+                <h3>
+                    Não foi possível carregar as opções.
+                </h3>
+
                 <p>
-                    Tente novamente em alguns instantes ou fale comigo
-                    pelo WhatsApp.
+                    Tente novamente em alguns instantes
+                    ou fale comigo pelo WhatsApp.
                 </p>
 
                 <a
                     href="https://wa.me/5513997359900"
                     target="_blank"
+                    rel="noopener noreferrer"
                     class="whatsapp-button"
                 >
                     Falar pelo WhatsApp
                 </a>
             </div>
         `;
-
     }
-
 }
 
 
-// =========================================================
-// FILTRAR
-// =========================================================
+/* =========================================================
+   FILTRO
+========================================================= */
 
 function filtrarConsorcios() {
 
-    const tipoSelecionado = String(filtroTipo.value || '')
-        .trim()
-        .toLowerCase();
-
-    const categoriaSelecionada = String(filtroCategoria.value || '')
-        .trim()
-        .toLowerCase();
-
-    const resultados = todosOsConsorcios.filter(consorcio => {
-
-        const status = String(consorcio.Status || '')
+    const tipoSelecionado =
+        String(filtroTipo.value || '')
             .trim()
             .toLowerCase();
 
-        const tipo = String(consorcio.Tipo || '')
+    const categoriaSelecionada =
+        String(filtroCategoria.value || '')
             .trim()
             .toLowerCase();
 
-        const categoria = String(consorcio.Categoria || '')
-            .trim()
-            .toLowerCase();
+    const resultados =
+        todosOsConsorcios.filter(consorcio => {
 
-        if (status !== 'ativo') {
-            return false;
-        }
+            const status =
+                String(consorcio.Status || '')
+                    .trim()
+                    .toLowerCase();
 
-        if (
-            tipoSelecionado &&
-            tipo !== tipoSelecionado
-        ) {
-            return false;
-        }
+            const tipo =
+                String(consorcio.Tipo || '')
+                    .trim()
+                    .toLowerCase();
 
-        if (
-            categoriaSelecionada &&
-            categoria !== categoriaSelecionada
-        ) {
-            return false;
-        }
+            const categoria =
+                String(consorcio.Categoria || '')
+                    .trim()
+                    .toLowerCase();
 
-        return true;
+            if (status !== 'ativo') {
+                return false;
+            }
 
-    });
+            if (
+                tipoSelecionado &&
+                tipo !== tipoSelecionado
+            ) {
+                return false;
+            }
+
+            if (
+                categoriaSelecionada &&
+                categoria !== categoriaSelecionada
+            ) {
+                return false;
+            }
+
+            return true;
+        });
 
     renderizarConsorcios(resultados);
-
 }
 
 
-// =========================================================
-// RENDERIZAR CARDS
-// =========================================================
+/* =========================================================
+   AGRUPAMENTO
+========================================================= */
+
+function agruparPorId(consorcios) {
+
+    const grupos = {};
+
+    consorcios.forEach(consorcio => {
+
+        const id =
+            String(consorcio.Id || '').trim();
+
+        if (!id) {
+            return;
+        }
+
+        if (!grupos[id]) {
+            grupos[id] = [];
+        }
+
+        grupos[id].push(consorcio);
+    });
+
+    return Object.values(grupos);
+}
+
+
+/* =========================================================
+   RENDERIZAÇÃO
+========================================================= */
 
 function renderizarConsorcios(consorcios) {
 
@@ -238,153 +304,210 @@ function renderizarConsorcios(consorcios) {
             'Nenhuma opção encontrada';
 
         return;
-
     }
 
     semResultados.hidden = true;
 
+    const grupos =
+        agruparPorId(consorcios);
+
     tituloResultados.textContent =
-        consorcios.length === 1
-            ? '1 opção disponível'
-            : `${consorcios.length} opções disponíveis`;
+        grupos.length === 1
+            ? '1 oportunidade disponível'
+            : `${grupos.length} oportunidades disponíveis`;
 
 
-    consorcios.forEach(consorcio => {
+    grupos.forEach(grupo => {
 
-        const card = document.createElement('article');
+        const primeiro = grupo[0];
 
-        card.className = 'consorcio-card';
+        const tipo =
+            String(
+                primeiro.Tipo || 'Imóveis'
+            ).trim();
 
-        const tipo = String(
-            consorcio.Tipo || 'Consórcio'
-        ).trim();
+        const categoria =
+            String(
+                primeiro.Categoria || 'Consórcio'
+            ).trim();
 
-        const categoria = String(
-            consorcio.Categoria || ''
-        ).trim();
+        const prazo =
+            formatarPrazo(
+                primeiro.Prazo
+            );
 
-        const credito = formatarMoeda(
-            consorcio.Credito
-        );
+        const condicoes =
+            String(
+                grupo.find(item =>
+                    String(
+                        item['Condições'] || ''
+                    ).trim()
+                )?.['Condições'] || ''
+            ).trim();
 
-        const parcela = formatarMoeda(
-            consorcio.Parcela
-        );
+        const entrada =
+            primeiro.Entrada !== '' &&
+            primeiro.Entrada !== null &&
+            primeiro.Entrada !== undefined
+                ? formatarMoeda(
+                    primeiro.Entrada
+                )
+                : '';
 
-        const prazo = formatarPrazo(
-            consorcio.Prazo
-        );
 
-        const entrada = consorcio.Entrada !== '' &&
-                        consorcio.Entrada !== null &&
-                        consorcio.Entrada !== undefined
-            ? formatarMoeda(consorcio.Entrada)
-            : '';
+        /*
+         * Monta as linhas de crédito e parcela
+         */
+        const linhas =
+            grupo.map(item => {
 
-        const condicoes = String(
-            consorcio['Condições'] || ''
-        ).trim();
+                const credito =
+                    formatarMoeda(
+                        item.Credito
+                    );
 
+                const parcela =
+                    formatarMoeda(
+                        item.Parcela
+                    );
+
+                return `
+                    <div class="consorcio-option">
+
+                        <div class="consorcio-option-credit">
+                            ${credito}
+                        </div>
+
+                        <div class="consorcio-option-installment">
+                            <span>Parcela</span>
+                            <strong>
+                                ${parcela}
+                                <small>/mês</small>
+                            </strong>
+                        </div>
+
+                    </div>
+                `;
+            }).join('');
+
+
+        /*
+         * Texto do WhatsApp
+         */
+        const textoWhatsApp =
+            `Olá, Mirian! Tenho interesse em um ${categoria.toLowerCase()} de consórcio de ${tipo.toLowerCase()}. Gostaria de saber mais sobre as opções disponíveis.`;
+
+
+        /*
+         * Card completo
+         */
+        const card =
+            document.createElement('article');
+
+        card.className =
+            'consorcio-card';
 
         card.innerHTML = `
 
-            <div class="consorcio-card-top">
+            <div class="consorcio-card-header">
 
-                <p class="consorcio-card-type">
-                    Consórcio de ${tipo}
-                </p>
+                <div>
+                    <p class="consorcio-card-category">
+                        ${categoria}
+                    </p>
 
-                <span class="consorcio-card-category">
-                    ${categoria}
+                    <h3>
+                        Consórcio de ${tipo}
+                    </h3>
+                </div>
+
+                <span class="consorcio-card-tag">
+                    ${grupo.length}
+                    ${grupo.length === 1
+                        ? 'opção'
+                        : 'opções'}
                 </span>
 
             </div>
 
 
-            <div class="consorcio-card-main">
+            <div class="consorcio-table">
 
-                <p class="consorcio-card-credit-label">
-                    Carta de crédito
-                </p>
+                <div class="consorcio-table-header">
 
-                <h3 class="consorcio-card-credit">
-                    ${credito}
-                </h3>
-
-            </div>
-
-
-            <div class="consorcio-card-info">
-
-                <div class="consorcio-card-info-item">
+                    <span>
+                        Carta de crédito
+                    </span>
 
                     <span>
                         Parcela
                     </span>
 
-                    <strong>
-                        ${parcela}/mês
-                    </strong>
-
                 </div>
 
+                ${linhas}
+
+            </div>
+
+
+            <div class="consorcio-card-details">
+
+                ${
+                    prazo
+                        ? `
+                            <div>
+                                <span>Prazo</span>
+                                <strong>
+                                    ${prazo}
+                                </strong>
+                            </div>
+                        `
+                        : ''
+                }
 
                 ${
                     entrada
-                    ? `
-                        <div class="consorcio-card-info-item">
-
-                            <span>
-                                Entrada
-                            </span>
-
-                            <strong>
-                                ${entrada}
-                            </strong>
-
-                        </div>
-                    `
-                    : `
-                        <div class="consorcio-card-info-item">
-
-                            <span>
-                                Prazo
-                            </span>
-
-                            <strong>
-                                ${prazo}
-                            </strong>
-
-                        </div>
-                    `
+                        ? `
+                            <div>
+                                <span>Entrada</span>
+                                <strong>
+                                    ${entrada}
+                                </strong>
+                            </div>
+                        `
+                        : ''
                 }
 
             </div>
 
 
-            <div class="consorcio-card-conditions">
+            ${
+                condicoes
+                    ? `
+                        <p class="consorcio-card-conditions">
+                            ${condicoes}
+                        </p>
+                    `
+                    : ''
+            }
 
-                <p>
-                    ${condicoes}
-                </p>
 
-            </div>
+            <div class="consorcio-card-footer">
 
-
-            <div class="consorcio-card-action">
+                <span>
+                    Converse sobre esta opção
+                </span>
 
                 <a
                     href="https://wa.me/5513997359900?text=${encodeURIComponent(
-                        `Olá, Mirian! Tenho interesse no ${categoria.toLowerCase()} de consórcio de ${tipo.toLowerCase()}, com carta de crédito de ${credito}. Gostaria de saber mais sobre as condições.`
+                        textoWhatsApp
                     )}"
                     target="_blank"
+                    rel="noopener noreferrer"
                 >
                     Tenho interesse
+                    <span>→</span>
                 </a>
-
-                <span>
-                    →
-                </span>
 
             </div>
 
@@ -393,13 +516,12 @@ function renderizarConsorcios(consorcios) {
         consorcioGrid.appendChild(card);
 
     });
-
 }
 
 
-// =========================================================
-// BOTÕES
-// =========================================================
+/* =========================================================
+   EVENTOS
+========================================================= */
 
 buscarConsorcios.addEventListener(
     'click',
@@ -414,14 +536,21 @@ limparBusca.addEventListener(
         filtroTipo.value = '';
         filtroCategoria.value = '';
 
-        renderizarConsorcios(todosOsConsorcios);
+        const ativos =
+            todosOsConsorcios.filter(
+                consorcio =>
+                    String(consorcio.Status || '')
+                        .trim()
+                        .toLowerCase() === 'ativo'
+            );
 
+        renderizarConsorcios(ativos);
     }
 );
 
 
-// =========================================================
-// INICIALIZAÇÃO
-// =========================================================
+/* =========================================================
+   INICIALIZAÇÃO
+========================================================= */
 
 carregarConsorcios();
