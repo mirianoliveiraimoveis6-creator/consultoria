@@ -448,7 +448,7 @@ function renderizarConsorcios(consorcios) {
             <div class="consorcio-card-header">
 
                 <div>
-                    <p class="consorcio-card-category">
+                    <p class="consorcio-card-category ${categoriaClasse}">
                         ${categoria}
                     </p>
 
