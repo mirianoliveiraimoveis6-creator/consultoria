@@ -530,22 +530,34 @@ function renderizarConsorcios(consorcios) {
 
             <div class="consorcio-card-footer">
 
-                <span>
-                    Converse sobre esta opção
-                </span>
+    <span>
+        Converse sobre esta opção
+    </span>
 
-                <a
-                    href="https://wa.me/5513997359900?text=${encodeURIComponent(
-                        textoWhatsApp
-                    )}"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Tenho interesse
-                    <span>→</span>
-                </a>
+    <div class="consorcio-card-actions">
 
-            </div>
+        <button
+            type="button"
+            class="generate-image-button"
+            data-consorcio-id="${primeiro.Id}"
+        >
+            Gerar imagem
+        </button>
+
+        <a
+            href="https://wa.me/5513997359900?text=${encodeURIComponent(
+                textoWhatsApp
+            )}"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            Tenho interesse
+            <span>→</span>
+        </a>
+
+    </div>
+
+</div>
 
         `;
 
