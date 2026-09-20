@@ -1,77 +1,44 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title>Comprar | Mirian de Oliveira | Imóveis & Patrimônio</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <!-- Google Fonts -->
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <title>Oportunidades Comerciais | Mirian de Oliveira | Imóveis & Patrimônio</title>
 
-        <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-        <!-- CSS principal -->
-        <link rel="stylesheet" href="../css/style.css">
-        <link rel="stylesheet" href="../css/oportunidades.css">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
 
-    </head>
-        <body>
+    <!-- CSS -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/oportunidades.css">
 
-        <!-- ========================= HEADER ========================== -->
+</head>
 
-        <header class="header">
-            <a href="index.html" class="brand">
+<body>
 
-                <span class="brand-name">
-                    MIRIAN
-                </span>
+    <!-- ========================= HEADER ========================== -->
 
-                <span class="brand-subtitle">
-                    IMÓVEIS & PATRIMÔNIO & CONSÓRCIO
-                </span>
-            </a>
+    <header class="header">
 
-            <nav class="navigation">
-                <a href="comprar.html" class="active">
-                    Comprar
-                </a>
+        <a href="index.html" class="brand">
 
-                <a href="alugar.html">
-                    Alugar
-                </a>
+            <span class="brand-name">
+                MIRIAN
+            </span>
 
-                <a href="oportunidades.html">
-                    Oportunidades Comerciais
-                </a>
+            <span class="brand-subtitle">
+                IMÓVEIS & PATRIMÔNIO & CONSÓRCIO
+            </span>
 
-                <a href="consorcio.html">
-                    Patrimônio & Consórcio
-                </a>
+        </a>
 
-                <a href="sobre.html">
-                    Sobre mim
-                </a>
+        <nav class="navigation">
 
-                <a
-                    href="https://wa.me/5513997359900"
-                    class="contact-link"
-                    target="_blank"
-                >
-                    Fale comigo
-                </a>
-            </nav>
-
-            <button class="menu-button" id="menuButton" aria-label="Abrir menu" type="button">
-                ☰
-            </button>
-
-        </header>
-
-        <!-- ========================= MENU MOBILE ========================== -->
-
-        <div class="mobile-menu" id="mobileMenu">
             <a href="comprar.html">
                 Comprar
             </a>
@@ -80,7 +47,7 @@
                 Alugar
             </a>
 
-            <a href="oportunidades.html">
+            <a href="oportunidades.html" class="active">
                 Oportunidades Comerciais
             </a>
 
@@ -94,157 +61,270 @@
 
             <a
                 href="https://wa.me/5513997359900"
+                class="contact-link"
                 target="_blank"
-                class="mobile-contact"
             >
                 Fale comigo
             </a>
-        </div>
 
-        <main>
+        </nav>
 
-            <!-- ========================= INTRO ========================== -->
-            <section class="page-intro">
-                <div class="page-intro-content">
+        <button
+            class="menu-button"
+            id="menuButton"
+            aria-label="Abrir menu"
+            type="button"
+        >
+            ☰
+        </button>
+
+    </header>
+
+
+    <!-- ========================= MENU MOBILE ========================== -->
+
+    <div class="mobile-menu" id="mobileMenu">
+
+        <a href="comprar.html">
+            Comprar
+        </a>
+
+        <a href="alugar.html">
+            Alugar
+        </a>
+
+        <a href="oportunidades.html" class="active">
+            Oportunidades Comerciais
+        </a>
+
+        <a href="consorcio.html">
+            Patrimônio & Consórcio
+        </a>
+
+        <a href="sobre.html">
+            Sobre mim
+        </a>
+
+        <a
+            href="https://wa.me/5513997359900"
+            target="_blank"
+            class="mobile-contact"
+        >
+            Fale comigo
+        </a>
+
+    </div>
+
+
+    <main>
+
+        <!-- ========================= INTRO ========================== -->
+
+        <section class="page-intro">
+
+            <div class="page-intro-content">
+
+                <p class="eyebrow">
+                    OPORTUNIDADES COMERCIAIS · PRAIA GRANDE
+                </p>
+
+                <h1>
+                    Encontre um espaço<br>
+                    <em>para o próximo passo do seu negócio.</em>
+                </h1>
+
+                <p class="page-intro-description">
+                    Explore oportunidades comerciais e encontre um espaço
+                    com potencial para acompanhar seus planos, seu negócio
+                    e os próximos passos da sua trajetória.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- ========================= BUSCA ========================== -->
+
+        <section class="property-search-page">
+
+            <div class="search-box">
+
+                <div class="search-fields">
+
+                    <!-- TIPO -->
+
+                    <div class="search-field">
+
+                        <label for="filtroTipo">
+                            Tipo de imóvel
+                        </label>
+
+                        <select id="filtroTipo">
+
+                            <option value="">
+                                Todos
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- BAIRRO -->
+
+                    <div class="search-field">
+
+                        <label for="filtroBairro">
+                            Bairro
+                        </label>
+
+                        <select id="filtroBairro">
+
+                            <option value="">
+                                Todos
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- ÁREA MÍNIMA -->
+
+                    <div class="search-field">
+
+                        <label for="filtroArea">
+                            Área mínima
+                        </label>
+
+                        <select id="filtroArea">
+
+                            <option value="">
+                                Qualquer área
+                            </option>
+
+                            <option value="50">
+                                50 m² ou mais
+                            </option>
+
+                            <option value="100">
+                                100 m² ou mais
+                            </option>
+
+                            <option value="150">
+                                150 m² ou mais
+                            </option>
+
+                            <option value="200">
+                                200 m² ou mais
+                            </option>
+
+                            <option value="300">
+                                300 m² ou mais
+                            </option>
+
+                            <option value="500">
+                                500 m² ou mais
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- VAGAS -->
+
+                    <div class="search-field">
+
+                        <label for="filtroVagas">
+                            Vagas
+                        </label>
+
+                        <select id="filtroVagas">
+
+                            <option value="">
+                                Todas
+                            </option>
+
+                            <option value="1">
+                                1+ vaga
+                            </option>
+
+                            <option value="2">
+                                2+ vagas
+                            </option>
+
+                            <option value="3">
+                                3+ vagas
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- AÇÕES -->
+
+                <div class="search-actions">
+
+                    <button
+                        type="button"
+                        class="search-button"
+                        id="buscarImoveis"
+                    >
+                        Encontrar oportunidades
+                    </button>
+
+                    <button
+                        type="button"
+                        class="search-clear"
+                        id="limparBusca"
+                    >
+                        Limpar filtros
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ========================= RESULTADOS ========================== -->
+
+        <section class="property-results">
+
+            <div class="section-heading">
+
+                <div>
+
                     <p class="eyebrow">
-                        OPORTUNIDADES COMERCIAIS · PRAIA GRANDE
+                        OPORTUNIDADES DISPONÍVEIS
                     </p>
 
-                    <h1>
-                        Encontre o espaço ideal<br>
-                        <em>para o seu negócio.</em>
-                    </h1>
+                    <h2 id="tituloResultados">
+                        Pontos comerciais disponíveis
+                    </h2>
 
-                    <p class="page-intro-description">
-                        Explore oportunidades comerciais e encontre
-                        um espaço com potencial para acompanhar seus planos
-                        seu negócio e os próximos passos da sua trajetória.
-                    </p>
-                </div>
-            </section>
-
-            <!-- ========================= BUSCA ========================== -->
-            <section class="property-search-page">
-                <div class="search-box">
-                    <div class="search-fields">
-                        <div class="search-field">
-                            <label for="filtroTipo">
-                                Tipo de imóvel
-                            </label>
-
-                            <select id="filtroTipo">
-
-                                <option value="">
-                                    Todos
-                                </option>
-
-                            </select>
-                        </div>
-
-                        <div class="search-field">
-                            <label for="filtroBairro">
-                                Bairro
-                            </label>
-
-                            <select id="filtroBairro">
-                                <option value="">
-                                    Todos
-                                </option>
-                            </select>
-                        </div>
-
-                        <div class="search-field">
-                            <label for="filtroQuartos">
-                                Quartos
-                            </label>
-
-                            <select id="filtroQuartos">
-                                <option value="">
-                                    Todos
-                                </option>
-
-                                <option value="1">
-                                    1 quarto
-                                </option>
-
-                                <option value="2">
-                                    2 quartos
-                                </option>
-
-                                <option value="3">
-                                    3 quartos
-                                </option>
-
-                                <option value="4">
-                                    4 quartos
-                                </option>
-
-                                <option value="5">
-                                    5+ quartos
-                                </option>
-                            </select>
-                        </div>
-
-                        <div class="search-field">
-                            <label for="filtroVagas">
-                                Vagas
-                            </label>
-
-                            <select id="filtroVagas">
-                                <option value="">
-                                    Todas
-                                </option>
-
-                                <option value="1">
-                                    1+ vaga
-                                </option>
-
-                                <option value="2">
-                                    2+ vagas
-                                </option>
-
-                                <option value="3">
-                                    3+ vagas
-                                </option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="search-actions">
-
-                        <button type="button" class="search-button" id="buscarImoveis">
-                            Encontrar imóveis
-                        </button>
-
-                        <button type="button" class="search-clear" id="limparBusca">
-                            Limpar filtros
-                        </button>
-                    </div>
-                </div>
-            </section>
-
-            <!-- ========================= RESULTADOS ========================== -->
-            <section class="property-results">
-                <div class="section-heading">
-                    <div>
-                        <p class="eyebrow">
-                            DISPONÍVEIS PARA COMPRA
-                        </p>
-
-                        <h2 id="tituloResultados">
-                            Pontos Comerciais Disponíveis
-                        </h2>
-                    </div>
                 </div>
 
-                <div
-                    class="property-grid" id="propertyGrid">
-                </div>
-            </section>
-        </main>
+            </div>
+
+
+            <div
+                class="property-grid"
+                id="propertyGrid"
+            >
+            </div>
+
+        </section>
+
+    </main>
 
     <!-- ========================= JAVASCRIPT ========================== -->
-    <script src="../js/alugar.js"></script>
-
-    </body>
+    <script src="../js/oportunidades.js"></script>
+</body>
 </html>
