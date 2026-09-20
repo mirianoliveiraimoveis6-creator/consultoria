@@ -1,1 +1,564 @@
+/* =========================================================
+   PATRIMÔNIO & CONSÓRCIO
+========================================================= */
 
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.patrimonio-hero {
+    background: var(--cream);
+    padding: 110px 7% 95px;
+    border-bottom: 1px solid rgba(23, 59, 67, 0.08);
+}
+
+.patrimonio-hero-content {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.patrimonio-hero h1 {
+    margin: 18px 0 25px;
+    font-family: "Playfair Display", serif;
+    font-size: clamp(2.8rem, 6vw, 5.2rem);
+    line-height: 1.04;
+    font-weight: 500;
+    letter-spacing: -0.035em;
+    color: var(--petrol);
+}
+
+.patrimonio-hero h1 em {
+    font-style: italic;
+    font-weight: 500;
+}
+
+.patrimonio-hero-description {
+    max-width: 650px;
+    margin: 0;
+    font-size: 1.08rem;
+    line-height: 1.75;
+    color: var(--charcoal);
+}
+
+
+/* =========================================================
+   INTRO
+========================================================= */
+
+.patrimonio-intro {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 70px;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 100px 7% 70px;
+}
+
+.patrimonio-intro-label {
+    padding-top: 10px;
+}
+
+.patrimonio-intro-content {
+    max-width: 760px;
+}
+
+.patrimonio-intro-content h2 {
+    margin: 0 0 20px;
+    font-family: "Playfair Display", serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    line-height: 1.12;
+    font-weight: 500;
+    letter-spacing: -0.025em;
+    color: var(--petrol);
+}
+
+.patrimonio-intro-content h2 em {
+    font-style: italic;
+}
+
+.patrimonio-intro-content p {
+    max-width: 650px;
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--charcoal);
+}
+
+
+/* =========================================================
+   BUSCA
+========================================================= */
+
+.consorcio-search {
+    padding: 0 7% 80px;
+}
+
+.consorcio-search .search-box {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 35px;
+    background: var(--sand);
+}
+
+.consorcio-search .search-fields {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+}
+
+.consorcio-search .search-field {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+}
+
+.consorcio-search .search-field label {
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--petrol);
+}
+
+.consorcio-search .search-field select {
+    width: 100%;
+    min-height: 50px;
+    padding: 0 15px;
+    border: 1px solid rgba(23, 59, 67, 0.18);
+    border-radius: 0;
+    background: var(--white);
+    font-family: "DM Sans", sans-serif;
+    font-size: 0.95rem;
+    color: var(--charcoal);
+    cursor: pointer;
+}
+
+.consorcio-search .search-field select:focus {
+    outline: 2px solid rgba(23, 59, 67, 0.2);
+    outline-offset: 2px;
+}
+
+.consorcio-search .search-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-top: 28px;
+}
+
+.consorcio-search .search-button {
+    padding: 14px 26px;
+    border: 1px solid var(--petrol);
+    background: var(--petrol);
+    color: var(--white);
+    font-family: "DM Sans", sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.consorcio-search .search-button:hover {
+    background: var(--charcoal);
+    border-color: var(--charcoal);
+}
+
+.consorcio-search .search-clear {
+    padding: 14px 5px;
+    border: none;
+    background: transparent;
+    color: var(--petrol);
+    font-family: "DM Sans", sans-serif;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.consorcio-search .search-clear:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================================================
+   RESULTADOS
+========================================================= */
+
+.consorcio-results {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 20px 7% 110px;
+}
+
+.consorcio-results .section-heading {
+    margin-bottom: 40px;
+}
+
+.consorcio-results .section-heading h2 {
+    margin: 10px 0 0;
+    font-family: "Playfair Display", serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.1;
+    font-weight: 500;
+    color: var(--petrol);
+}
+
+
+/* =========================================================
+   GRID DE CONSÓRCIOS
+========================================================= */
+
+.consorcio-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+
+/* =========================================================
+   CARD
+========================================================= */
+
+.consorcio-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 390px;
+    padding: 30px;
+    border: 1px solid rgba(23, 59, 67, 0.13);
+    background: var(--white);
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.consorcio-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(23, 59, 67, 0.28);
+    box-shadow: 0 12px 30px rgba(23, 59, 67, 0.08);
+}
+
+
+/* =========================================================
+   TOPO DO CARD
+========================================================= */
+
+.consorcio-card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 35px;
+}
+
+.consorcio-card-type {
+    margin: 0;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--sage);
+}
+
+.consorcio-card-category {
+    flex-shrink: 0;
+    padding: 6px 9px;
+    border: 1px solid rgba(23, 59, 67, 0.15);
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--petrol);
+}
+
+
+/* =========================================================
+   VALOR DO CRÉDITO
+========================================================= */
+
+.consorcio-card-credit-label {
+    margin: 0 0 6px;
+    font-size: 0.78rem;
+    color: var(--charcoal);
+}
+
+.consorcio-card-credit {
+    margin: 0;
+    font-family: "Playfair Display", serif;
+    font-size: clamp(2.2rem, 4vw, 3rem);
+    line-height: 1;
+    font-weight: 500;
+    letter-spacing: -0.035em;
+    color: var(--petrol);
+}
+
+
+/* =========================================================
+   INFORMAÇÕES
+========================================================= */
+
+.consorcio-card-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 35px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(23, 59, 67, 0.1);
+}
+
+.consorcio-card-info-item span {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--sage);
+}
+
+.consorcio-card-info-item strong {
+    display: block;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--charcoal);
+}
+
+
+/* =========================================================
+   CONDIÇÕES
+========================================================= */
+
+.consorcio-card-conditions {
+    margin-top: auto;
+    padding-top: 25px;
+}
+
+.consorcio-card-conditions p {
+    margin: 0;
+    font-size: 0.76rem;
+    line-height: 1.5;
+    color: #687173;
+}
+
+
+/* =========================================================
+   BOTÃO
+========================================================= */
+
+.consorcio-card-action {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 22px;
+    padding-top: 18px;
+    border-top: 1px solid rgba(23, 59, 67, 0.1);
+}
+
+.consorcio-card-action a {
+    color: var(--petrol);
+    font-size: 0.86rem;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.consorcio-card-action a:hover {
+    text-decoration: underline;
+}
+
+.consorcio-card-action span {
+    font-size: 1.1rem;
+    color: var(--sage);
+}
+
+
+/* =========================================================
+   SEM RESULTADOS
+========================================================= */
+
+.no-results {
+    padding: 70px 20px;
+    text-align: center;
+    border: 1px solid rgba(23, 59, 67, 0.1);
+    background: var(--cream);
+}
+
+.no-results h3 {
+    margin: 0 0 10px;
+    font-family: "Playfair Display", serif;
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: var(--petrol);
+}
+
+.no-results p {
+    max-width: 500px;
+    margin: 0 auto 25px;
+    line-height: 1.6;
+    color: var(--charcoal);
+}
+
+.whatsapp-button {
+    display: inline-block;
+    padding: 13px 22px;
+    background: var(--petrol);
+    color: var(--white);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   CTA
+========================================================= */
+
+.patrimonio-cta {
+    padding: 100px 7%;
+    background: var(--petrol);
+    color: var(--white);
+}
+
+.patrimonio-cta-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.patrimonio-cta .eyebrow {
+    color: var(--sand);
+}
+
+.patrimonio-cta h2 {
+    margin: 18px 0 20px;
+    font-family: "Playfair Display", serif;
+    font-size: clamp(2.3rem, 5vw, 4rem);
+    line-height: 1.08;
+    font-weight: 500;
+    letter-spacing: -0.025em;
+}
+
+.patrimonio-cta h2 em {
+    font-style: italic;
+}
+
+.patrimonio-cta p:not(.eyebrow) {
+    max-width: 600px;
+    margin: 0 auto;
+    font-size: 1rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.78);
+}
+
+.cta-button {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 14px 28px;
+    border: 1px solid var(--sand);
+    background: var(--sand);
+    color: var(--petrol);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: 0.2s ease;
+}
+
+.cta-button:hover {
+    background: var(--white);
+    border-color: var(--white);
+}
+
+
+/* =========================================================
+   RESPONSIVO
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .patrimonio-intro {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding-top: 75px;
+    }
+
+    .patrimonio-intro-label {
+        padding-top: 0;
+    }
+
+    .consorcio-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+
+@media (max-width: 650px) {
+
+    .patrimonio-hero {
+        padding: 75px 6% 70px;
+    }
+
+    .patrimonio-hero h1 {
+        font-size: 2.7rem;
+    }
+
+    .patrimonio-hero-description {
+        font-size: 1rem;
+    }
+
+    .patrimonio-intro {
+        padding: 65px 6% 50px;
+    }
+
+    .patrimonio-intro-content h2 {
+        font-size: 2.15rem;
+    }
+
+    .consorcio-search {
+        padding: 0 6% 60px;
+    }
+
+    .consorcio-search .search-box {
+        padding: 25px;
+    }
+
+    .consorcio-search .search-fields {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .consorcio-search .search-actions {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+    }
+
+    .consorcio-search .search-button {
+        width: 100%;
+    }
+
+    .consorcio-search .search-clear {
+        align-self: center;
+    }
+
+    .consorcio-results {
+        padding: 10px 6% 75px;
+    }
+
+    .consorcio-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .consorcio-card {
+        min-height: 360px;
+        padding: 25px;
+    }
+
+    .consorcio-card-credit {
+        font-size: 2.6rem;
+    }
+
+    .patrimonio-cta {
+        padding: 75px 6%;
+    }
+
+}
