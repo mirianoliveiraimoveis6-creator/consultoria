@@ -15,7 +15,6 @@ async function carregarImoveis() {
         const imoveis = await resposta.json();
         console.log('Imóveis recebidos da planilha:' , imoveis);
 
-
         /*
             * Filtra somente os imóveis marcados como destaque
             * Depois organiza pela OrdemDestaque.
@@ -35,8 +34,6 @@ async function carregarImoveis() {
         // Cria um card para cada imóvel marcado como destaque
 
         destaques.forEach(imovel => {
-            //REMOVER const fotoCapa = imovel.Fotos?.find(foto => String(foto.Tipo).trim().toLowerCase() === 'capa') || imovel.Fotos?.[0];
-            //REMOVER const imagemImovel = fotoCapa?.Url || 'assets/images/imovel-hero.jpg';
             //const imagemImovel = 'https://drive.google.com/thumbnail?id=1zpNTNo6utv0AWpkaMtlVgUnyeuENTUfK&sz=w1200';
             const fotos = imovel.Fotos || [];
             const galeria = fotos.length > 0
@@ -46,13 +43,10 @@ async function carregarImoveis() {
                     Legenda: imovel.Titulo
                 }];
             const temGaleria = galeria.length > 1;
-            console.log('temGaleria', temGaleria); 
-            console.log('Alterado 3');
             
             //Define a etiqueta de acordo com o tipo de negócio
 
             let classeEtiqueta = 'property-tag';
-
             if (String(imovel.Negocio).trim().toLowerCase() === 'locação') {
                 classeEtiqueta += ' property-tag-rent';
             }
@@ -153,99 +147,134 @@ async function carregarImoveis() {
 
         const cards = propertyGrid.querySelectorAll('.property-card');
 
-cards.forEach((card, indiceCard) => {
+        cards.forEach((card, indiceCard) => {
 
-    const imovel = destaques[indiceCard];
-    const fotos = imovel.Fotos || [];
+            const imovel = destaques[indiceCard];
+            const fotos = imovel.Fotos || [];
 
-    if (fotos.length <= 1) {
-        return;
-    }
+            if (fotos.length <= 1) {
+                return;
+            }
 
-    let fotoAtual = 0;
+            let fotoAtual = 0;
 
-    const imagem = card.querySelector('[data-gallery-image]');
-    const anterior = card.querySelector('[data-gallery-prev]');
-    const proxima = card.querySelector('[data-gallery-next]');
-    const dots = card.querySelectorAll('[data-gallery-dot]');
+            const imagem = card.querySelector('[data-gallery-image]');
+            const anterior = card.querySelector('[data-gallery-prev]');
+            const proxima = card.querySelector('[data-gallery-next]');
+            const dots = card.querySelectorAll('[data-gallery-dot]');
 
-    function atualizarGaleria() {
+            function atualizarGaleria() {
 
-        const foto = fotos[fotoAtual];
+                const foto = fotos[fotoAtual];
 
-        imagem.src = foto.Url;
-        imagem.alt = foto.Legenda || imovel.Titulo;
+                imagem.src = foto.Url;
+                imagem.alt = foto.Legenda || imovel.Titulo;
 
-        dots.forEach((dot, indice) => {
-            dot.classList.toggle(
-                'active',
-                indice === fotoAtual
-            );
+                dots.forEach((dot, indice) => {
+                    dot.classList.toggle(
+                        'active',
+                        indice === fotoAtual
+                    );
+                });
+            }
+
+            proxima.addEventListener('click', (event) => {
+
+                event.preventDefault();
+                event.stopPropagation();
+
+                fotoAtual++;
+
+                if (fotoAtual >= fotos.length) {
+                    fotoAtual = 0;
+                }
+
+                atualizarGaleria();
+            });
+
+            anterior.addEventListener('click', (event) => {
+
+                event.preventDefault();
+                event.stopPropagation();
+
+                fotoAtual--;
+
+                if (fotoAtual < 0) {
+                    fotoAtual = fotos.length - 1;
+                }
+
+                atualizarGaleria();
+            });
+
+            dots.forEach((dot, indice) => {
+
+                dot.addEventListener('click', (event) => {
+
+                    event.preventDefault();
+                    event.stopPropagation();
+
+                    fotoAtual = indice;
+
+                    atualizarGaleria();
+                });
+
+            });
+
         });
-    }
 
-    proxima.addEventListener('click', (event) => {
-
-        event.preventDefault();
-        event.stopPropagation();
-
-        fotoAtual++;
-
-        if (fotoAtual >= fotos.length) {
-            fotoAtual = 0;
+            } catch (erro) {
+                console.error('Erro ao carregar imóveis:', erro);
+            }
         }
 
-        atualizarGaleria();
-    });
 
-    anterior.addEventListener('click', (event) => {
+        carregarImoveis();
 
-        event.preventDefault();
-        event.stopPropagation();
-
-        fotoAtual--;
-
-        if (fotoAtual < 0) {
-            fotoAtual = fotos.length - 1;
-        }
-
-        atualizarGaleria();
-    });
-
-    dots.forEach((dot, indice) => {
-
-        dot.addEventListener('click', (event) => {
-
-            event.preventDefault();
-            event.stopPropagation();
-
-            fotoAtual = indice;
-
-            atualizarGaleria();
+        const menuButton = document.getElementById('menuButton');
+        const mobileMenu = document.getElementById('mobileMenu');
+        menuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('open');
         });
 
-    });
+/* =========================================================
+   BUSCA DE IMÓVEIS
+   ========================================================= */
 
-});
+        const botoesNegocio = document.querySelectorAll('.search-business-option');
 
-    } catch (erro) {
-        console.error('Erro ao carregar imóveis:', erro);
-    }
-}
+        const campoQuartos = document.getElementById('campoQuartos');
+        const campoArea = document.getElementById('campoArea');
+
+        let negocioSelecionado = 'Venda';
+
+        function atualizarCamposBusca() {
+
+            if (!campoQuartos || !campoArea) {
+                return;
+            }
+
+            const comercial = negocioSelecionado === 'Oportunidade Comercial';
+
+            campoQuartos.style.display = comercial ? 'none' : '';
+            campoArea.style.display = comercial ? '' : 'none';
+        }
 
 
-carregarImoveis();
+        botoesNegocio.forEach(botao => {
 
-        const menuButton =
-    document.getElementById('menuButton');
+            botao.addEventListener('click', () => {
 
+                botoesNegocio.forEach(item => {
+                    item.classList.remove('active');
+                });
 
-const mobileMenu =
-    document.getElementById('mobileMenu');
+                botao.classList.add('active');
 
+                negocioSelecionado = botao.dataset.negocio;
 
-menuButton.addEventListener('click', () => {
+                atualizarCamposBusca();
+            });
 
-    mobileMenu.classList.toggle('open');
+        });
 
-});
+        atualizarCamposBusca();
