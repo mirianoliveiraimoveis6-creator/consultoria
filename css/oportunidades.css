@@ -1,0 +1,227 @@
+/* =========================================================
+PÁGINA OPORTUNIDADES COMERCIAIS
+========================================================= */
+
+.page-intro {
+padding: 110px 20px 80px;
+background: var(--cream);
+}
+
+.page-intro-content {
+max-width: 1200px;
+margin: 0 auto;
+}
+
+.page-intro .eyebrow {
+margin-bottom: 18px;
+color: var(--sage);
+font-size: 0.78rem;
+font-weight: 700;
+letter-spacing: 0.14em;
+text-transform: uppercase;
+}
+
+.page-intro h1 {
+max-width: 760px;
+margin: 0 0 22px;
+color: var(--petrol);
+font-family: "Playfair Display", serif;
+font-size: clamp(2.8rem, 6vw, 5rem);
+font-weight: 500;
+line-height: 1.05;
+}
+
+.page-intro h1 em {
+font-style: italic;
+font-weight: 500;
+}
+
+.page-intro-description {
+max-width: 620px;
+margin: 0;
+color: #62696A;
+font-size: 1rem;
+line-height: 1.75;
+}
+
+/* =========================================================
+BUSCA
+========================================================= */
+
+.property-search-page {
+padding: 0 20px 90px;
+background: var(--cream);
+}
+
+.property-search-page .search-box {
+max-width: 1050px;
+margin: 0 auto;
+padding: 34px;
+background: var(--white);
+border: 1px solid rgba(23, 59, 67, 0.10);
+box-shadow: 0 12px 35px rgba(37, 42, 43, 0.06);
+}
+
+.property-search-page .search-fields {
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+gap: 22px;
+}
+
+.property-search-page .search-field {
+display: flex;
+flex-direction: column;
+gap: 8px;
+}
+
+.property-search-page .search-field label {
+color: var(--charcoal);
+font-size: 0.78rem;
+font-weight: 700;
+letter-spacing: 0.04em;
+}
+
+.property-search-page .search-field select {
+width: 100%;
+min-height: 48px;
+padding: 0 14px;
+border: 1px solid #D8D4CC;
+border-radius: 2px;
+background: var(--white);
+color: var(--charcoal);
+font-family: inherit;
+font-size: 0.92rem;
+cursor: pointer;
+outline: none;
+transition: border-color 0.2s ease;
+}
+
+.property-search-page .search-field select:focus {
+border-color: var(--petrol);
+}
+
+.property-search-page .search-actions {
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 22px;
+margin-top: 30px;
+}
+
+.property-search-page .search-button {
+min-height: 48px;
+padding: 0 28px;
+border: 1px solid var(--petrol);
+border-radius: 2px;
+background: var(--petrol);
+color: var(--white);
+font-family: inherit;
+font-size: 0.9rem;
+font-weight: 600;
+cursor: pointer;
+transition:
+background-color 0.2s ease,
+transform 0.2s ease;
+}
+
+.property-search-page .search-button:hover {
+transform: translateY(-1px);
+}
+
+.property-search-page .search-clear {
+border: 0;
+background: transparent;
+color: var(--sage);
+font-family: inherit;
+font-size: 0.86rem;
+cursor: pointer;
+}
+
+.property-search-page .search-clear:hover {
+color: var(--petrol);
+}
+
+/* =========================================================
+RESULTADOS
+========================================================= */
+
+.property-results {
+padding: 20px 20px 110px;
+background: var(--cream);
+}
+
+.property-results .section-heading {
+max-width: 1200px;
+margin: 0 auto 42px;
+}
+
+.property-results .section-heading .eyebrow {
+margin-bottom: 10px;
+}
+
+.property-results .section-heading h2 {
+margin: 0;
+}
+
+.property-results .property-grid {
+max-width: 1200px;
+margin: 0 auto;
+}
+
+.search-no-results {
+grid-column: 1 / -1;
+padding: 60px 20px;
+text-align: center;
+}
+
+.search-no-results p {
+margin: 0;
+color: #62696A;
+font-size: 0.95rem;
+}
+
+/* =========================================================
+RESPONSIVO
+========================================================= */
+
+@media (max-width: 800px) {
+
+.page-intro {
+    padding: 80px 20px 60px;
+}
+
+.page-intro h1 {
+    font-size: clamp(2.5rem, 12vw, 3.8rem);
+}
+
+.property-search-page {
+    padding: 0 20px 70px;
+}
+
+.property-search-page .search-box {
+    padding: 24px 20px;
+}
+
+.property-search-page .search-fields {
+    grid-template-columns: 1fr;
+    gap: 18px;
+}
+
+.property-search-page .search-actions {
+    flex-direction: column;
+    gap: 16px;
+}
+
+.property-search-page .search-button {
+    width: 100%;
+}
+
+.property-search-page .search-clear {
+    padding: 4px 0;
+}
+
+.property-results {
+    padding: 10px 20px 80px;
+}
+
+}
