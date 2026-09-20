@@ -306,10 +306,7 @@ function obterImoveisDoNegocio() {
         const status = String(imovel.Status || '').trim().toLowerCase();
         const negocio = String(imovel.Negocio || '').trim().toLowerCase();
 
-        return (
-            status === 'ativo' &&
-            negocio === negocioSelecionado.toLowerCase()
-        );
+        return (status === 'ativo' && negocio === negocioSelecionado.toLowerCase());
     });
 }
 
