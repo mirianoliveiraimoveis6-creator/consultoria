@@ -1,0 +1,518 @@
+.property-page {
+    background: var(--cream);
+    min-height: 100vh;
+}
+
+
+/* =========================
+   CABEÇALHO DA PÁGINA
+========================= */
+
+.site-header {
+    position: relative;
+
+    height: 92px;
+    padding: 0 6vw;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background: var(--cream);
+}
+
+.desktop-nav {
+    display: flex;
+    align-items: center;
+    gap: 34px;
+
+    font-size: 14px;
+}
+
+.desktop-nav a {
+    transition: opacity 0.2s ease;
+}
+
+.desktop-nav a:hover {
+    opacity: 0.55;
+}
+
+.nav-contact {
+    padding: 11px 19px;
+
+    border: 1px solid var(--petrol);
+    border-radius: 30px;
+}
+
+
+/* Menu mobile fica escondido no desktop */
+
+.site-header .menu-button {
+    display: none;
+}
+
+.site-header .mobile-menu {
+    display: none;
+}
+
+
+/* =========================
+   CONTEÚDO DO IMÓVEL
+========================= */
+
+.property-detail {
+    padding: 50px 6vw 100px;
+}
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    margin-bottom: 35px;
+
+    font-size: 13px;
+    color: var(--petrol);
+}
+
+.back-link:hover {
+    opacity: 0.7;
+}
+
+
+/* =========================
+   GRID PRINCIPAL
+========================= */
+
+.property-detail-grid {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1.4fr)
+        minmax(320px, 0.6fr);
+
+    gap: 55px;
+
+    align-items: start;
+}
+
+
+/* =========================
+   GALERIA
+========================= */
+
+.property-main-image {
+    position: relative;
+
+    aspect-ratio: 4 / 3;
+
+    overflow: hidden;
+
+    background: #E5E1DB;
+}
+
+.property-main-image img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+}
+
+.detail-gallery-button {
+    position: absolute;
+
+    top: 50%;
+    transform: translateY(-50%);
+
+    width: 44px;
+    height: 44px;
+
+    border: 0;
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.92);
+
+    color: var(--petrol);
+
+    font-size: 26px;
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 2;
+}
+
+.detail-gallery-button:hover {
+    background: var(--white);
+}
+
+.detail-gallery-prev {
+    left: 18px;
+}
+
+.detail-gallery-next {
+    right: 18px;
+}
+
+
+/* =========================
+   MINIATURAS
+========================= */
+
+.property-thumbnails {
+    display: grid;
+
+    grid-template-columns: repeat(5, 1fr);
+
+    gap: 10px;
+
+    margin-top: 10px;
+}
+
+.property-thumbnail {
+    aspect-ratio: 4 / 3;
+
+    overflow: hidden;
+
+    border: 2px solid transparent;
+
+    padding: 0;
+
+    cursor: pointer;
+
+    background: none;
+}
+
+.property-thumbnail.active {
+    border-color: var(--petrol);
+}
+
+.property-thumbnail img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+}
+
+
+/* =========================
+   INFORMAÇÕES
+========================= */
+
+.property-detail-info {
+    padding-top: 5px;
+}
+
+.property-detail-tag {
+    display: inline-block;
+
+    padding: 7px 12px;
+
+    margin-bottom: 20px;
+
+    background: var(--petrol);
+    color: var(--white);
+
+    font-size: 9px;
+    font-weight: 600;
+
+    letter-spacing: 0.15em;
+
+    text-transform: uppercase;
+}
+
+.property-detail-type {
+    font-size: 11px;
+    font-weight: 600;
+
+    letter-spacing: 0.14em;
+
+    color: var(--sage);
+
+    text-transform: uppercase;
+}
+
+.property-detail-info h1 {
+    margin-top: 10px;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: clamp(38px, 4vw, 58px);
+
+    line-height: 1.05;
+
+    font-weight: 500;
+
+    color: var(--petrol);
+}
+
+.property-detail-location {
+    margin-top: 15px;
+
+    font-size: 14px;
+
+    color: #687174;
+}
+
+.property-detail-price {
+    margin-top: 30px;
+
+    font-size: 28px;
+    font-weight: 600;
+
+    color: var(--petrol);
+}
+
+
+/* =========================
+   CARACTERÍSTICAS
+========================= */
+
+.property-detail-features {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 1px;
+
+    margin-top: 30px;
+
+    border-top: 1px solid #DED9D1;
+    border-left: 1px solid #DED9D1;
+}
+
+.property-feature {
+    padding: 18px;
+
+    border-right: 1px solid #DED9D1;
+    border-bottom: 1px solid #DED9D1;
+}
+
+.property-feature strong {
+    display: block;
+
+    font-size: 18px;
+    font-weight: 600;
+
+    color: var(--petrol);
+}
+
+.property-feature span {
+    display: block;
+
+    margin-top: 4px;
+
+    font-size: 10px;
+
+    letter-spacing: 0.08em;
+
+    text-transform: uppercase;
+
+    color: #687174;
+}
+
+
+/* =========================
+   WHATSAPP
+========================= */
+
+.property-whatsapp {
+    display: block;
+
+    width: 100%;
+
+    margin-top: 30px;
+
+    padding: 16px 24px;
+
+    border: 0;
+
+    background: var(--petrol);
+    color: var(--white);
+
+    text-align: center;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    letter-spacing: 0.04em;
+
+    transition:
+        transform 0.2s ease,
+        opacity 0.2s ease;
+}
+
+.property-whatsapp:hover {
+    transform: translateY(-2px);
+    opacity: 0.92;
+}
+
+
+/* =========================
+   DESCRIÇÃO
+========================= */
+
+.property-description {
+    max-width: 850px;
+
+    margin-top: 90px;
+
+    padding-top: 50px;
+
+    border-top: 1px solid #DED9D1;
+}
+
+.property-description h2 {
+    font-family: "Playfair Display", serif;
+
+    font-size: 38px;
+
+    font-weight: 500;
+
+    color: var(--petrol);
+}
+
+.property-description p {
+    margin-top: 20px;
+
+    font-size: 16px;
+
+    line-height: 1.8;
+
+    color: #596366;
+
+    white-space: pre-line;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 800px) {
+
+    /* Cabeçalho */
+
+    .site-header {
+        height: 76px;
+    }
+
+    .desktop-nav {
+        display: none;
+    }
+
+    .site-header .menu-button {
+        display: flex;
+
+        align-items: center;
+        justify-content: center;
+
+        width: 40px;
+        height: 40px;
+
+        padding: 0;
+
+        border: 0;
+
+        background: transparent;
+
+        color: var(--petrol);
+
+        font-size: 28px;
+
+        cursor: pointer;
+    }
+
+    .site-header .mobile-menu {
+        position: absolute;
+
+        top: 76px;
+        left: 0;
+        right: 0;
+
+        display: none;
+
+        flex-direction: column;
+
+        padding: 20px 6vw 30px;
+
+        background: var(--cream);
+
+        border-top: 1px solid #E5E1DB;
+
+        z-index: 100;
+    }
+
+    .site-header .mobile-menu.open {
+        display: flex;
+    }
+
+    .site-header .mobile-menu a {
+        display: block;
+
+        padding: 15px 0;
+
+        border-bottom: 1px solid #E5E1DB;
+
+        font-size: 15px;
+
+        color: var(--petrol);
+    }
+
+    .site-header .mobile-menu .mobile-contact {
+        margin-top: 15px;
+
+        padding: 13px 20px;
+
+        border: 0;
+        border-radius: 30px;
+
+        background: var(--petrol);
+
+        color: var(--white);
+
+        text-align: center;
+    }
+
+
+    /* Conteúdo */
+
+    .property-detail {
+        padding: 30px 6vw 70px;
+    }
+
+    .property-detail-grid {
+        grid-template-columns: 1fr;
+
+        gap: 35px;
+    }
+
+    .property-main-image {
+        aspect-ratio: 4 / 3;
+    }
+
+    .property-thumbnails {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .property-detail-info h1 {
+        font-size: 42px;
+    }
+
+    .property-detail-price {
+        font-size: 25px;
+    }
+
+    .property-description {
+        margin-top: 60px;
+
+        padding-top: 35px;
+    }
+}
