@@ -285,15 +285,71 @@ async function carregarImoveis() {
    FILTROS DA BUSCA
    ========================================================= */
 
-        const filtroTipo = document.getElementById('filtroTipo');
-        const filtroBairro = document.getElementById('filtroBairro');
-        const filtroQuartos = document.getElementById('filtroQuartos');
-        const filtroArea = document.getElementById('filtroArea');
-        const filtroVagas = document.getElementById('filtroVagas');
-        
-        const buscarImoveis = document.getElementById('buscarImoveis');
-        const limparBusca = document.getElementById('limparBusca');
-        
-        const searchResults = document.getElementById('searchResults');
-        const searchResultsTitle = document.getElementById('searchResultsTitle');
-        const searchPropertyGrid = document.getElementById('searchPropertyGrid');
+const filtroTipo = document.getElementById('filtroTipo');
+const filtroBairro = document.getElementById('filtroBairro');
+const filtroQuartos = document.getElementById('filtroQuartos');
+const filtroArea = document.getElementById('filtroArea');
+const filtroVagas = document.getElementById('filtroVagas');
+
+const buscarImoveis = document.getElementById('buscarImoveis');
+const limparBusca = document.getElementById('limparBusca');
+
+const searchResults = document.getElementById('searchResults');
+const searchResultsTitle = document.getElementById('searchResultsTitle');
+const searchPropertyGrid = document.getElementById('searchPropertyGrid');
+
+
+function obterImoveisDoNegocio() {
+
+    return todosOsImoveis.filter(imovel => {
+
+        const status = String(imovel.Status || '').trim().toLowerCase();
+        const negocio = String(imovel.Negocio || '').trim().toLowerCase();
+
+        return (
+            status === 'ativo' &&
+            negocio === negocioSelecionado.toLowerCase()
+        );
+    });
+}
+
+
+function preencherOpcoes(select, valores, textoTodos = 'Todos') {
+
+    if (!select) {
+        return;
+    }
+
+    select.innerHTML = `<option value="">${textoTodos}</option>`;
+
+    const valoresUnicos = [...new Set(
+        valores
+            .map(valor => String(valor || '').trim())
+            .filter(valor => valor)
+    )].sort((a, b) => a.localeCompare(b, 'pt-BR'));
+
+    valoresUnicos.forEach(valor => {
+
+        const option = document.createElement('option');
+
+        option.value = valor;
+        option.textContent = valor;
+
+        select.appendChild(option);
+    });
+}
+
+
+function atualizarOpcoesBusca() {
+
+    const imoveisDisponiveis = obterImoveisDoNegocio();
+
+    const tipos = imoveisDisponiveis.map(imovel => imovel.Tipo);
+    const bairros = imoveisDisponiveis.map(imovel => imovel.Bairro);
+
+    preencherOpcoes(filtroTipo, tipos, 'Todos');
+    preencherOpcoes(filtroBairro, bairros, 'Todos');
+}
+
+
+atualizarOpcoesBusca();
