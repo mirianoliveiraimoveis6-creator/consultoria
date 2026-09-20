@@ -338,7 +338,7 @@ function preencherOpcoes(select, valores, textoTodos = 'Todos') {
 
 
 function atualizarOpcoesBusca() {
-
+    console.log('Atualizando filtros...');
     const imoveisDisponiveis = obterImoveisDoNegocio();
 
     const tipos = imoveisDisponiveis.map(imovel => imovel.Tipo);
