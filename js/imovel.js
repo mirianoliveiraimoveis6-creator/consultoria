@@ -9,7 +9,6 @@ function formatarMoeda(valor) {
     });
 }
 
-
 function obterIdImovel() {
 
     const parametros = new URLSearchParams(
