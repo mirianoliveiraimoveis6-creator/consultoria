@@ -631,7 +631,7 @@
 
 .consorcio-card-category.carta-contemplada {
     color: #173B43;
-    background: rgba(94, 124, 133, 0.18);
+    background: var(--petrol);
 }
 
 
