@@ -120,7 +120,7 @@
                     <div class="hero-actions">
 
                         <a
-                            href="#imoveis"
+                            href="#busca-imovel"
                             class="button button-primary"
                         >
                             Encontrar imóvel
@@ -142,6 +142,104 @@
                         src="assets/images/imovel-hero.jpg"
                         alt="Imóvel em destaque"
                     >
+                </div>
+            </section>
+
+            <section class="property-search" id="busca-imovel">
+                <div class="section-heading">
+                    <p class="section-eyebrow">Encontre seu imóvel</p>
+                    <h2>O endereço certo começa pela busca.</h2>
+                    <p>
+                        Escolha o que procura e encontre imóveis que combinam com o seu momento.
+                    </p>
+                </div>
+            
+                <div class="search-box">
+            
+                    <div class="search-business">
+                        <button type="button" class="search-business-option active" data-negocio="Venda">
+                            Comprar
+                        </button>
+            
+                        <button type="button" class="search-business-option" data-negocio="Locação">
+                            Alugar
+                        </button>
+            
+                        <button type="button" class="search-business-option" data-negocio="Oportunidade Comercial">
+                            Oportunidade comercial
+                        </button>
+                    </div>
+            
+                    <div class="search-fields">
+            
+                        <div class="search-field">
+                            <label for="filtroTipo">Tipo de imóvel</label>
+                            <select id="filtroTipo">
+                                <option value="">Todos</option>
+                            </select>
+                        </div>
+            
+                        <div class="search-field">
+                            <label for="filtroBairro">Bairro</label>
+                            <select id="filtroBairro">
+                                <option value="">Todos</option>
+                            </select>
+                        </div>
+            
+                        <div class="search-field" id="campoQuartos">
+                            <label for="filtroQuartos">Quartos</label>
+                            <select id="filtroQuartos">
+                                <option value="">Todos</option>
+                                <option value="1">1 quarto</option>
+                                <option value="2">2 quartos</option>
+                                <option value="3">3 quartos</option>
+                                <option value="4">4 quartos</option>
+                                <option value="5">5+ quartos</option>
+                            </select>
+                        </div>
+            
+                        <div class="search-field" id="campoArea">
+                            <label for="filtroArea">Área mínima</label>
+                            <select id="filtroArea">
+                                <option value="">Qualquer área</option>
+                                <option value="50">50 m²</option>
+                                <option value="80">80 m²</option>
+                                <option value="100">100 m²</option>
+                                <option value="150">150 m²</option>
+                                <option value="200">200 m²</option>
+                            </select>
+                        </div>
+            
+                        <div class="search-field" id="campoVagas">
+                            <label for="filtroVagas">Vagas</label>
+                            <select id="filtroVagas">
+                                <option value="">Todas</option>
+                                <option value="1">1+ vaga</option>
+                                <option value="2">2+ vagas</option>
+                                <option value="3">3+ vagas</option>
+                            </select>
+                        </div>
+            
+                    </div>
+            
+                    <div class="search-actions">
+                        <button type="button" class="search-button" id="buscarImoveis">
+                            Encontrar imóveis
+                        </button>
+            
+                        <button type="button" class="search-clear" id="limparBusca">
+                            Limpar filtros
+                        </button>
+                    </div>
+            
+                </div>
+            
+                <div class="search-results" id="searchResults" hidden>
+                    <div class="search-results-heading">
+                        <h3 id="searchResultsTitle">Imóveis encontrados</h3>
+                    </div>
+            
+                    <div class="property-grid" id="searchPropertyGrid"></div>
                 </div>
             </section>
 
