@@ -284,7 +284,36 @@ function agruparPorId(consorcios) {
         grupos[id].push(consorcio);
     });
 
-    return Object.values(grupos);
+    return Object.values(grupos)
+        .sort((grupoA, grupoB) => {
+
+            const primeiroA = grupoA[0];
+            const primeiroB = grupoB[0];
+
+            const destaqueA =
+                String(primeiroA.Destaque || '')
+                    .trim()
+                    .toLowerCase() === 'sim';
+
+            const destaqueB =
+                String(primeiroB.Destaque || '')
+                    .trim()
+                    .toLowerCase() === 'sim';
+
+            // Destaques primeiro
+            if (destaqueA !== destaqueB) {
+                return destaqueA ? -1 : 1;
+            }
+
+            // Depois, ordem definida na planilha
+            const ordemA =
+                Number(primeiroA.OrdemDestaque) || 9999;
+
+            const ordemB =
+                Number(primeiroB.OrdemDestaque) || 9999;
+
+            return ordemA - ordemB;
+        });
 }
 
 
@@ -330,6 +359,13 @@ function renderizarConsorcios(consorcios) {
             String(
                 primeiro.Categoria || 'Consórcio'
             ).trim();
+
+        const categoriaClasse =
+            categoria
+                .toLowerCase()
+                .normalize('NFD')
+                .replace(/[\u0300-\u036f]/g, '')
+                .replace(/\s+/g, '-');
 
         const prazo =
             formatarPrazo(
