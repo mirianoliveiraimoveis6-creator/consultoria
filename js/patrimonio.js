@@ -551,6 +551,14 @@ function renderizarConsorcios(consorcios) {
 
         consorcioGrid.appendChild(card);
 
+        const botaoImagem =
+            card.querySelector('.generate-image-button');
+        
+        botaoImagem.addEventListener(
+            'click',
+            () => gerarImagemConsorcio(primeiro.Id)
+        );
+
     });
 }
 
@@ -588,5 +596,464 @@ limparBusca.addEventListener(
 /* =========================================================
    INICIALIZAÇÃO
 ========================================================= */
+async function gerarImagemConsorcio(id) {
+
+    const grupo =
+        todosOsConsorcios.filter(consorcio =>
+            String(consorcio.Id || '').trim() ===
+            String(id).trim()
+        );
+
+    if (!grupo.length) {
+        return;
+    }
+
+    const primeiro = grupo[0];
+
+    const canvas =
+        document.createElement('canvas');
+
+    const largura = 1080;
+    const altura = 1350;
+
+    canvas.width = largura;
+    canvas.height = altura;
+
+    const ctx =
+        canvas.getContext('2d');
+
+    /*
+     * Aguarda as fontes do site carregarem.
+     */
+    if (document.fonts) {
+        await document.fonts.ready;
+    }
+
+    /*
+     * Fundo
+     */
+    ctx.fillStyle = '#F8F6F2';
+    ctx.fillRect(
+        0,
+        0,
+        largura,
+        altura
+    );
+
+
+    /*
+     * Margens
+     */
+    const margem = 90;
+
+
+    /*
+     * Categoria
+     */
+    const categoria =
+        String(
+            primeiro.Categoria || 'Consórcio'
+        ).trim();
+
+    const tipo =
+        String(
+            primeiro.Tipo || 'Imóveis'
+        ).trim();
+
+
+    /*
+     * Cor da categoria
+     */
+    const categoriaNormalizada =
+        categoria
+            .toLowerCase()
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '');
+
+    let corCategoria = '#7D918B';
+
+    if (
+        categoriaNormalizada.includes(
+            'carta contemplada'
+        )
+    ) {
+        corCategoria = '#5E7C85';
+    }
+
+
+    /*
+     * Cabeçalho da arte
+     */
+    ctx.fillStyle = '#173B43';
+
+    ctx.font =
+        '600 28px "DM Sans"';
+
+    ctx.fillText(
+        categoria.toUpperCase(),
+        margem,
+        110
+    );
+
+
+    ctx.font =
+        '500 58px "Playfair Display"';
+
+    ctx.fillText(
+        `Consórcio de ${tipo}`,
+        margem,
+        185
+    );
+
+
+    /*
+     * Linha decorativa
+     */
+    ctx.fillStyle =
+        corCategoria;
+
+    ctx.fillRect(
+        margem,
+        220,
+        90,
+        5
+    );
+
+
+    /*
+     * Cabeçalho da tabela
+     */
+    const tabelaY = 300;
+
+    ctx.fillStyle =
+        '#7D918B';
+
+    ctx.font =
+        '600 22px "DM Sans"';
+
+    ctx.fillText(
+        'CARTA DE CRÉDITO',
+        margem,
+        tabelaY
+    );
+
+    ctx.textAlign = 'right';
+
+    ctx.fillText(
+        'PARCELA',
+        largura - margem,
+        tabelaY
+    );
+
+    ctx.textAlign = 'left';
+
+
+    /*
+     * Linhas
+     */
+    let y =
+        tabelaY + 65;
+
+    const espacamento =
+        grupo.length > 5
+            ? 82
+            : 105;
+
+
+    grupo.forEach((item, index) => {
+
+        const credito =
+            formatarMoeda(item.Credito);
+
+        const parcela =
+            formatarMoeda(item.Parcela);
+
+
+        /*
+         * Linha
+         */
+        if (index > 0) {
+
+            ctx.strokeStyle =
+                'rgba(23, 59, 67, 0.14)';
+
+            ctx.lineWidth = 1;
+
+            ctx.beginPath();
+
+            ctx.moveTo(
+                margem,
+                y - 38
+            );
+
+            ctx.lineTo(
+                largura - margem,
+                y - 38
+            );
+
+            ctx.stroke();
+        }
+
+
+        /*
+         * Crédito
+         */
+        ctx.fillStyle =
+            '#173B43';
+
+        ctx.font =
+            grupo.length > 5
+                ? '500 36px "Playfair Display"'
+                : '500 42px "Playfair Display"';
+
+        ctx.fillText(
+            credito,
+            margem,
+            y
+        );
+
+
+        /*
+         * Parcela
+         */
+        ctx.textAlign = 'right';
+
+        ctx.font =
+            grupo.length > 5
+                ? '600 28px "DM Sans"'
+                : '600 31px "DM Sans"';
+
+        ctx.fillStyle =
+            '#252A2B';
+
+        ctx.fillText(
+            `${parcela}/mês`,
+            largura - margem,
+            y
+        );
+
+        ctx.textAlign = 'left';
+
+
+        y += espacamento;
+
+    });
+
+
+    /*
+     * Área inferior
+     */
+    const linhaInferior =
+        Math.max(
+            y + 15,
+            850
+        );
+
+    ctx.strokeStyle =
+        'rgba(23, 59, 67, 0.14)';
+
+    ctx.lineWidth = 1;
+
+    ctx.beginPath();
+
+    ctx.moveTo(
+        margem,
+        linhaInferior
+    );
+
+    ctx.lineTo(
+        largura - margem,
+        linhaInferior
+    );
+
+    ctx.stroke();
+
+
+    /*
+     * Informações adicionais
+     */
+    const prazo =
+        formatarPrazo(
+            primeiro.Prazo
+        );
+
+    const entrada =
+        primeiro.Entrada !== '' &&
+        primeiro.Entrada !== null &&
+        primeiro.Entrada !== undefined
+            ? formatarMoeda(
+                primeiro.Entrada
+            )
+            : '';
+
+
+    let infoY =
+        linhaInferior + 60;
+
+
+    if (prazo) {
+
+        ctx.fillStyle =
+            '#7D918B';
+
+        ctx.font =
+            '500 19px "DM Sans"';
+
+        ctx.fillText(
+            'PRAZO',
+            margem,
+            infoY
+        );
+
+        ctx.fillStyle =
+            '#252A2B';
+
+        ctx.font =
+            '600 24px "DM Sans"';
+
+        ctx.fillText(
+            prazo,
+            margem,
+            infoY + 35
+        );
+    }
+
+
+    if (entrada) {
+
+        const colunaEntrada =
+            400;
+
+        ctx.fillStyle =
+            '#7D918B';
+
+        ctx.font =
+            '500 19px "DM Sans"';
+
+        ctx.fillText(
+            'ENTRADA',
+            colunaEntrada,
+            infoY
+        );
+
+        ctx.fillStyle =
+            '#252A2B';
+
+        ctx.font =
+            '600 24px "DM Sans"';
+
+        ctx.fillText(
+            entrada,
+            colunaEntrada,
+            infoY + 35
+        );
+    }
+
+
+    /*
+     * Condições
+     */
+    const condicoes =
+        String(
+            grupo.find(item =>
+                String(
+                    item['Condições'] || ''
+                ).trim()
+            )?.['Condições'] || ''
+        ).trim();
+
+
+    if (condicoes) {
+
+        ctx.fillStyle =
+            '#7D918B';
+
+        ctx.font =
+            '400 17px "DM Sans"';
+
+        ctx.fillText(
+            condicoes,
+            margem,
+            infoY + 95
+        );
+    }
+
+
+    /*
+     * Rodapé da marca
+     */
+    ctx.fillStyle =
+        '#173B43';
+
+    ctx.font =
+        '500 30px "Playfair Display"';
+
+    ctx.fillText(
+        'MIRIAN',
+        margem,
+        1240
+    );
+
+    ctx.fillStyle =
+        '#7D918B';
+
+    ctx.font =
+        '600 14px "DM Sans"';
+
+    ctx.fillText(
+        'IMÓVEIS & PATRIMÔNIO & CONSÓRCIO',
+        margem,
+        1270
+    );
+
+
+    /*
+     * WhatsApp
+     */
+    ctx.textAlign = 'right';
+
+    ctx.fillStyle =
+        '#173B43';
+
+    ctx.font =
+        '600 19px "DM Sans"';
+
+    ctx.fillText(
+        'Fale com Mirian',
+        largura - margem,
+        1240
+    );
+
+    ctx.fillStyle =
+        '#7D918B';
+
+    ctx.font =
+        '400 17px "DM Sans"';
+
+    ctx.fillText(
+        '(13) 99735-9900',
+        largura - margem,
+        1270
+    );
+
+    ctx.textAlign = 'left';
+
+
+    /*
+     * Download
+     */
+    const link =
+        document.createElement('a');
+
+    link.download =
+        `consorcio-${String(id)
+            .replace(/\s+/g, '-')
+            .toLowerCase()}.png`;
+
+    link.href =
+        canvas.toDataURL('image/png');
+
+    link.click();
+}
 
 carregarConsorcios();
