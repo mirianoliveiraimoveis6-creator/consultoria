@@ -25,9 +25,7 @@ a {
 }
 
 
-/* =========================
-   HEADER
-========================= */
+/* ========================= HEADER ========================= */
 
 .header {
     height: 92px;
@@ -88,9 +86,7 @@ a {
 }
 
 
-/* =========================
-   HERO
-========================= */
+/* ========================= HERO ========================= */
 
 .hero {
     min-height: calc(100vh - 92px);
@@ -183,9 +179,7 @@ h1 em {
 }
 
 
-/* =========================
-   IMAGEM
-========================= */
+/* ========================= IMAGEM ========================= */
 
 .hero-image {
     position: relative;
@@ -231,9 +225,7 @@ h1 em {
     font-weight: 500;
 }
 
-/* =========================
-   IMÓVEIS EM DESTAQUE
-========================= */
+/* ========================= IMÓVEIS EM DESTAQUE ========================= */
 
 .featured-properties {
     padding: 110px 6vw 120px;
@@ -272,7 +264,6 @@ h1 em {
     color: var(--petrol);
 }
 
-
 /* GRID */
 
 .property-grid {
@@ -280,7 +271,6 @@ h1 em {
     grid-template-columns: repeat(3, 1fr);
     gap: 24px;
 }
-
 
 /* CARD */
 
@@ -299,7 +289,6 @@ h1 em {
 
     box-shadow: 0 15px 35px rgba(23, 59, 67, 0.08);
 }
-
 
 /* FOTO */
 
@@ -384,7 +373,6 @@ h1 em {
     transform: scale(1.04);
 }
 
-
 /* TAG */
 
 .property-tag {
@@ -406,7 +394,6 @@ h1 em {
 .property-tag-commercial {
     background: #315B67;
 }
-
 
 /* INFORMAÇÕES */
 
@@ -467,9 +454,236 @@ h1 em {
     display: none;
 }
 
-/* =========================
-   MOBILE
-========================= */
+/* =========================================== BUSCA DE IMÓVEIS ================================================= */
+
+.property-search {
+    padding: 110px 0 90px;
+    background: var(--cream);
+}
+
+.property-search .section-heading {
+    max-width: 680px;
+    margin: 0 auto 42px;
+    text-align: center;
+}
+
+.property-search .section-eyebrow {
+    margin-bottom: 10px;
+    color: var(--sage);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.property-search .section-heading h2 {
+    margin-bottom: 14px;
+}
+
+.property-search .section-heading p:last-child {
+    margin: 0;
+    color: #62696A;
+}
+
+/* Caixa principal */
+
+.search-box {
+    max-width: 1050px;
+    margin: 0 auto;
+    padding: 34px;
+    background: var(--white);
+    border: 1px solid rgba(23, 59, 67, 0.10);
+    box-shadow: 0 12px 35px rgba(37, 42, 43, 0.06);
+}
+
+/* Tipo de negócio */
+
+.search-business {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 30px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid rgba(23, 59, 67, 0.10);
+}
+
+.search-business-option {
+    padding: 11px 18px;
+    border: 1px solid #D8D4CC;
+    border-radius: 2px;
+    background: transparent;
+    color: var(--charcoal);
+    font-family: inherit;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease;
+}
+
+.search-business-option:hover {
+    border-color: var(--petrol);
+}
+
+.search-business-option.active {
+    border-color: var(--petrol);
+    background: var(--petrol);
+    color: var(--white);
+}
+
+/* Campos */
+
+.search-fields {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+}
+
+.search-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.search-field label {
+    color: var(--charcoal);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+}
+
+.search-field select {
+    width: 100%;
+    min-height: 48px;
+    padding: 0 14px;
+    border: 1px solid #D8D4CC;
+    border-radius: 2px;
+    background-color: var(--white);
+    color: var(--charcoal);
+    font-family: inherit;
+    font-size: 0.92rem;
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.search-field select:focus {
+    border-color: var(--petrol);
+}
+
+/* Ações */
+
+.search-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 22px;
+    margin-top: 30px;
+}
+
+.search-button {
+    min-height: 48px;
+    padding: 0 28px;
+    border: 1px solid var(--petrol);
+    border-radius: 2px;
+    background: var(--petrol);
+    color: var(--white);
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.search-button:hover {
+    transform: translateY(-1px);
+}
+
+.search-clear {
+    border: 0;
+    background: transparent;
+    color: var(--sage);
+    font-family: inherit;
+    font-size: 0.86rem;
+    cursor: pointer;
+}
+
+.search-clear:hover {
+    color: var(--petrol);
+}
+
+
+/* Resultados */
+
+.search-results {
+    max-width: 1200px;
+    margin: 70px auto 0;
+}
+
+.search-results-heading {
+    margin-bottom: 28px;
+}
+
+.search-results-heading h3 {
+    margin: 0;
+    color: var(--petrol);
+    font-family: "Playfair Display", serif;
+    font-size: 1.8rem;
+    font-weight: 500;
+}
+
+
+/* =============================================== RESPONSIVO ================================================ */
+
+@media (max-width: 800px) {
+
+    .property-search {
+        padding: 80px 20px 70px;
+    }
+
+    .property-search .section-heading {
+        margin-bottom: 30px;
+    }
+
+    .search-box {
+        padding: 24px 20px;
+    }
+
+    .search-business {
+        flex-direction: column;
+    }
+
+    .search-business-option {
+        width: 100%;
+        text-align: center;
+    }
+
+    .search-fields {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .search-actions {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .search-button {
+        width: 100%;
+    }
+
+    .search-clear {
+        padding: 4px 0;
+    }
+
+    .search-results {
+        margin-top: 50px;
+    }
+}
+
+/* ========================= MOBILE ========================= */
 
 @media (max-width: 800px) {
 
