@@ -13,7 +13,6 @@ function formatarMoeda(valor) {
 function criarCardImovel(imovel) {
 
     const fotos = imovel.Fotos || [];
-
     const galeria = fotos.length > 0
         ? fotos
         : [{
@@ -251,7 +250,7 @@ async function carregarImoveis() {
             const galeria = fotos.length > 0
                 ? fotos
                 : [{
-                    Url: 'assets/images/imovel-hero.jpg',
+                    Url: '../assets/images/imovel-hero.jpg',
                     Legenda: imovel.Titulo
                 }];
             const temGaleria = galeria.length > 1;
