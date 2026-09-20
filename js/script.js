@@ -124,7 +124,7 @@ function criarCardImovel(imovel) {
                         ${formatarMoeda(imovel.Valor)}
                     </strong>
 
-                    <a href="imovel.html?id=${imovel.Id}">
+                    <a href="pages/imovel.html?id=${imovel.Id}">
                         Ver imóvel →
                     </a>
 
