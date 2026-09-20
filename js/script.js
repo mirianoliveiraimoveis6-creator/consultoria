@@ -230,7 +230,7 @@ async function carregarImoveis() {
         }
 
 
-        carregarImoveis();
+        //carregarImoveis();
 
         const menuButton = document.getElementById('menuButton');
         const mobileMenu = document.getElementById('mobileMenu');
@@ -350,3 +350,4 @@ function atualizarOpcoesBusca() {
 
 
 atualizarOpcoesBusca();
+carregarImoveis();
