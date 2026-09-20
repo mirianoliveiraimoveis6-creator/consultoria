@@ -16,6 +16,7 @@ async function carregarImoveis() {
         const imoveis = await resposta.json();
         todosOsImoveis = imoveis;
         console.log('Imóveis recebidos da planilha:' , imoveis);
+        atualizarOpcoesBusca();
 
         /*
             * Filtra somente os imóveis marcados como destaque
@@ -275,6 +276,7 @@ async function carregarImoveis() {
                 negocioSelecionado = botao.dataset.negocio;
 
                 atualizarCamposBusca();
+                atualizarOpcoesBusca();
             });
 
         });
@@ -351,6 +353,5 @@ function atualizarOpcoesBusca() {
     preencherOpcoes(filtroBairro, bairros, 'Todos');
 }
 
-
-atualizarOpcoesBusca();
+//atualizarOpcoesBusca();
 carregarImoveis();
