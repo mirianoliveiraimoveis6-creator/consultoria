@@ -27,7 +27,7 @@ function criarGaleria(imovel) {
     if (fotos.length === 0) {
 
         return [{
-            Url: 'assets/images/imovel-hero.jpg',
+            Url: '../assets/images/imovel-hero.jpg',
             Legenda: imovel.Titulo
         }];
 
