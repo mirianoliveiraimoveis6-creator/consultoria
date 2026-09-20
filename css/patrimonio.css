@@ -623,7 +623,6 @@
 
 .consorcio-card-category.simulacao {
     color: #536F69;
-
     background: rgba(125, 145, 139, 0.20);
 }
 
@@ -631,8 +630,7 @@
 /* Carta contemplada */
 
 .consorcio-card-category.carta-contemplada {
-    color: #496B75;
-
+    color: #173B43;
     background: rgba(94, 124, 133, 0.18);
 }
 
